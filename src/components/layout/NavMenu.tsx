@@ -239,7 +239,7 @@ function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
         <div className="erp-dropdown"
           onMouseEnter={enter}
           onMouseLeave={leave}
-          style={{ position: 'absolute', left: '100%', top: 0, minWidth: 210, zIndex: 9999 }}>
+          style={{ position: 'absolute', left: '100%', top: 0, minWidth: 220, zIndex: 10000 }}>
           {item.children.map(child => (
             <Link key={child.href} href={child.href} className="erp-dropdown-item"
               style={{ fontSize: 13, padding: '10px 16px', color: 'var(--text)' }}
@@ -307,7 +307,8 @@ export default function NavMenu() {
               {/* Dropdown panel — NO overflow:hidden here, it would clip fly-out sub-menus */}
               {isOpen && (
                 <div className="erp-dropdown"
-                  style={{ position: 'absolute', top: '100%', left: 0, minWidth: 230, zIndex: 9999, maxHeight: '75vh', overflowY: 'auto' }}>
+                  style={{ position: 'absolute', top: '100%', left: 0, minWidth: 230, zIndex: 9999 }}>
+                  {/* No overflow on this div — overflow clips absolutely positioned fly-outs */}
                   {module.items.map((item) => (
                     <SubItem key={item.label} item={item} onClose={() => setOpen(null)} />
                   ))}
