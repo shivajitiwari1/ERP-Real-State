@@ -95,7 +95,59 @@ const NAV: NavModule[] = [
       ]},
     ],
   },
-  { label: 'Application', items: [{ label: 'Coming in Phase 3', href: '/' }] },
+  {
+    label: 'Application',
+    items: [
+      { label: 'Booking', children: [
+        { label: 'Booking Form (New)', href: '/application/booking/new' },
+        { label: 'Edit Booking Form', href: '/application/booking/edit' },
+        { label: 'Customer Register', href: '/application/booking/list' },
+        { label: 'Unit Shifting Process', href: '/application/booking/shift' },
+      ]},
+      { label: 'Agreement of Unit', children: [
+        { label: 'Agreement Form', href: '/application/agreement/form' },
+        { label: 'Agreement Cancellation', href: '/application/agreement/cancellation' },
+      ]},
+      { label: 'Receipt Process', children: [
+        { label: 'Receipt Generation', href: '/application/receipts/new' },
+        { label: 'Receipt Register', href: '/application/receipts/list' },
+        { label: 'Penalty Payment', href: '/application/receipts/penalty' },
+        { label: 'Journal Entry', href: '/application/receipts/journal' },
+        { label: 'Edit Receipt', href: '/application/receipts/edit' },
+        { label: 'Cancel Receipt', href: '/application/receipts/cancel' },
+      ]},
+      { label: 'Demand Raise', children: [
+        { label: 'Stage Wise', href: '/application/demand/stage' },
+        { label: 'Tower Wise', href: '/application/demand/tower' },
+        { label: 'Customer Wise', href: '/application/demand/customer' },
+        { label: 'Installment Wise', href: '/application/demand/installment' },
+        { label: 'Demand Unraise', href: '/application/demand/unraise' },
+      ]},
+      { label: 'Banking', children: [
+        { label: 'Cheque Deposit', href: '/application/banking/deposit' },
+        { label: 'Verify Cheque Status', href: '/application/banking/status' },
+      ]},
+      { label: 'Interest Calculation', children: [
+        { label: 'Interest Scheduler', href: '/application/interest/scheduler' },
+        { label: 'Interest Waiver', href: '/application/interest/waiver' },
+        { label: 'Grace Period', href: '/application/interest/grace' },
+      ]},
+      { label: 'Print / Documents', children: [
+        { label: 'Print Demand', href: '/application/print/demand' },
+        { label: 'Applicant Ledger', href: '/application/print/ledger' },
+        { label: 'Documents', href: '/application/documents' },
+        { label: 'Loan Process', href: '/application/loan' },
+      ]},
+      { label: 'Surrender / Cancellation', children: [
+        { label: 'Application', href: '/application/surrender/apply' },
+        { label: 'Report', href: '/application/surrender/report' },
+      ]},
+      { label: 'Transfer', children: [
+        { label: 'Application', href: '/application/transfer/apply' },
+        { label: 'Transfer Report', href: '/application/transfer/report' },
+      ]},
+    ],
+  },
   { label: 'Reports', items: [{ label: 'Coming in Phase 5', href: '/' }] },
   { label: 'Broker', items: [{ label: 'Coming in Phase 6', href: '/' }] },
   { label: 'Email / SMS', items: [{ label: 'Coming in Phase 7', href: '/' }] },

@@ -41,6 +41,21 @@ import BookingAmount from './BookingAmount';
 import Rate from './Rate';
 import ReminderDays from './ReminderDays';
 
+// Phase 3 models
+import Booking from './Booking';
+import Applicant from './Applicant';
+import ApplicantAddress from './ApplicantAddress';
+import Agreement from './Agreement';
+import Receipt from './Receipt';
+import ReceiptHead from './ReceiptHead';
+import Demand from './Demand';
+import Cheque from './Cheque';
+import LoanDetail from './LoanDetail';
+import Surrender from './Surrender';
+import Transfer from './Transfer';
+import UnitShift from './UnitShift';
+import JournalEntry from './JournalEntry';
+
 // ── Phase 1 Associations ──────────────────────────────────────────────
 Role.hasMany(RoleMenu, { foreignKey: 'roleId', as: 'menus' });
 RoleMenu.belongsTo(Role, { foreignKey: 'roleId' });
@@ -104,6 +119,45 @@ PaymentPlan.hasMany(BookingAmount, { foreignKey: 'planId' });
 
 Rate.belongsTo(UnitType, { foreignKey: 'unitTypeId' });
 
+// ── Phase 3 Associations ──────────────────────────────────────────────
+Booking.belongsTo(Project, { foreignKey: 'projectId' });
+Booking.belongsTo(Unit, { foreignKey: 'unitId' });
+Booking.belongsTo(PaymentPlan, { foreignKey: 'planId' });
+Booking.hasMany(Applicant, { foreignKey: 'bookingId' });
+Booking.hasMany(Receipt, { foreignKey: 'bookingId' });
+Booking.hasMany(Demand, { foreignKey: 'bookingId' });
+Booking.hasOne(Agreement, { foreignKey: 'bookingId' });
+Booking.hasOne(LoanDetail, { foreignKey: 'bookingId' });
+Booking.hasMany(Surrender, { foreignKey: 'bookingId' });
+Booking.hasMany(Transfer, { foreignKey: 'fromBookingId', as: 'outTransfers' });
+Booking.hasMany(UnitShift, { foreignKey: 'fromBookingId' });
+Booking.hasMany(JournalEntry, { foreignKey: 'bookingId' });
+
+Project.hasMany(Booking, { foreignKey: 'projectId' });
+Unit.hasMany(Booking, { foreignKey: 'unitId' });
+
+Applicant.belongsTo(Booking, { foreignKey: 'bookingId' });
+Applicant.hasMany(ApplicantAddress, { foreignKey: 'applicantId' });
+ApplicantAddress.belongsTo(Applicant, { foreignKey: 'applicantId' });
+
+Receipt.belongsTo(Booking, { foreignKey: 'bookingId' });
+Receipt.belongsTo(Project, { foreignKey: 'projectId' });
+Receipt.hasMany(ReceiptHead, { foreignKey: 'receiptId' });
+Receipt.hasMany(Cheque, { foreignKey: 'receiptId' });
+ReceiptHead.belongsTo(Receipt, { foreignKey: 'receiptId' });
+Cheque.belongsTo(Receipt, { foreignKey: 'receiptId' });
+
+Demand.belongsTo(Booking, { foreignKey: 'bookingId' });
+Demand.belongsTo(Project, { foreignKey: 'projectId' });
+Demand.belongsTo(Installment, { foreignKey: 'installmentId' });
+Demand.belongsTo(PaymentStage, { foreignKey: 'stageId' });
+
+Agreement.belongsTo(Booking, { foreignKey: 'bookingId' });
+Surrender.belongsTo(Booking, { foreignKey: 'bookingId' });
+Transfer.belongsTo(Booking, { foreignKey: 'fromBookingId', as: 'fromBooking' });
+LoanDetail.belongsTo(Booking, { foreignKey: 'bookingId' });
+LoanDetail.belongsTo(BankLoan, { foreignKey: 'bankId' });
+
 export async function syncDatabase() {
   await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
 }
@@ -118,4 +172,7 @@ export {
   PlcCharge, OtherCharge, AddonCharge, IfmsCharge, ParkingType,
   ProjectConfiguration, PaymentPlan, PaymentStage, Installment,
   BookingAmount, Rate, ReminderDays,
+  // Phase 3
+  Booking, Applicant, ApplicantAddress, Agreement, Receipt, ReceiptHead,
+  Demand, Cheque, LoanDetail, Surrender, Transfer, UnitShift, JournalEntry,
 };
