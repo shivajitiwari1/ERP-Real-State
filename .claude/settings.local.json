@@ -11,7 +11,9 @@
       "Bash(node -e \"require\\('./src/models/index.ts'\\)\")",
       "Bash(Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue)",
       "Bash(Select-Object -Last 30)",
-      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; $env:NODE_ENV = \"production\"; npx next build 2>&1 | Select-Object -Last 40)"
+      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; $env:NODE_ENV = \"production\"; npx next build 2>&1 | Select-Object -Last 40)",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue | ForEach-Object { \"$\\($_.Id\\) CPU:$\\([math]::Round\\($_.CPU,1\\)\\)s Mem:$\\([math]::Round\\($_.WorkingSet/1MB,0\\)\\)MB\" })",
+      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; Get-ChildItem .next -ErrorAction SilentlyContinue | ForEach-Object { try { Remove-Item $_.FullName -Recurse -Force -ErrorAction Stop } catch {} }; Remove-Item .next -Force -Recurse -ErrorAction SilentlyContinue; Write-Output \"Cleared\"; $output = npx next build 2>&1; $output | Select-Object -Last 25)"
     ],
     "additionalDirectories": [
       "e:\\Demo Website\\ERP\\docs\\superpowers"

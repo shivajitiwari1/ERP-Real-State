@@ -56,6 +56,22 @@ import Transfer from './Transfer';
 import UnitShift from './UnitShift';
 import JournalEntry from './JournalEntry';
 
+// Phase 5-7 models
+import Broker from './Broker';
+import BrokerProjectMapping from './BrokerProjectMapping';
+import HeldUnit from './HeldUnit';
+import EmailConfig from './EmailConfig';
+import EmailLog from './EmailLog';
+import SmsConfig from './SmsConfig';
+import SmsLog from './SmsLog';
+import AddressGroup from './AddressGroup';
+import AddressBook from './AddressBook';
+import PossessionDate from './PossessionDate';
+import NocRequest from './NocRequest';
+import HoldingCharge from './HoldingCharge';
+import RegistryRecord from './RegistryRecord';
+import FinalStatement from './FinalStatement';
+
 // ── Phase 1 Associations ──────────────────────────────────────────────
 Role.hasMany(RoleMenu, { foreignKey: 'roleId', as: 'menus' });
 RoleMenu.belongsTo(Role, { foreignKey: 'roleId' });
@@ -158,6 +174,25 @@ Transfer.belongsTo(Booking, { foreignKey: 'fromBookingId', as: 'fromBooking' });
 LoanDetail.belongsTo(Booking, { foreignKey: 'bookingId' });
 LoanDetail.belongsTo(BankLoan, { foreignKey: 'bankId' });
 
+// ── Phase 5-7 Associations ────────────────────────────────────────────
+Broker.hasMany(BrokerProjectMapping, { foreignKey: 'brokerId' });
+BrokerProjectMapping.belongsTo(Broker, { foreignKey: 'brokerId' });
+BrokerProjectMapping.belongsTo(Project, { foreignKey: 'projectId' });
+Broker.hasMany(HeldUnit, { foreignKey: 'brokerId' });
+HeldUnit.belongsTo(Broker, { foreignKey: 'brokerId' });
+HeldUnit.belongsTo(Unit, { foreignKey: 'unitId' });
+
+AddressGroup.hasMany(AddressBook, { foreignKey: 'groupId' });
+AddressBook.belongsTo(AddressGroup, { foreignKey: 'groupId' });
+
+Booking.hasOne(PossessionDate, { foreignKey: 'bookingId' });
+PossessionDate.belongsTo(Booking, { foreignKey: 'bookingId' });
+Booking.hasMany(NocRequest, { foreignKey: 'bookingId' });
+NocRequest.belongsTo(Booking, { foreignKey: 'bookingId' });
+Booking.hasOne(RegistryRecord, { foreignKey: 'bookingId' });
+Booking.hasOne(FinalStatement, { foreignKey: 'bookingId' });
+Project.hasMany(HoldingCharge, { foreignKey: 'projectId' });
+
 export async function syncDatabase() {
   await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
 }
@@ -175,4 +210,8 @@ export {
   // Phase 3
   Booking, Applicant, ApplicantAddress, Agreement, Receipt, ReceiptHead,
   Demand, Cheque, LoanDetail, Surrender, Transfer, UnitShift, JournalEntry,
+  // Phase 5-7
+  Broker, BrokerProjectMapping, HeldUnit,
+  EmailConfig, EmailLog, SmsConfig, SmsLog, AddressGroup, AddressBook,
+  PossessionDate, NocRequest, HoldingCharge, RegistryRecord, FinalStatement,
 };

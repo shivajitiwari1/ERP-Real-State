@@ -148,10 +148,118 @@ const NAV: NavModule[] = [
       ]},
     ],
   },
-  { label: 'Reports', items: [{ label: 'Coming in Phase 5', href: '/' }] },
-  { label: 'Broker', items: [{ label: 'Coming in Phase 6', href: '/' }] },
-  { label: 'Email / SMS', items: [{ label: 'Coming in Phase 7', href: '/' }] },
-  { label: 'Possession', items: [{ label: 'Coming in Phase 8', href: '/' }] },
+  {
+    label: 'Reports',
+    items: [
+      { label: 'Inventory', children: [
+        { label: 'Unit Status', href: '/reports/inventory/unit-status' },
+        { label: 'Availability Sheet', href: '/reports/inventory/availability' },
+        { label: 'Unit Sold', href: '/reports/inventory/unit-sold' },
+        { label: 'Tower Wise Unit Status', href: '/reports/inventory/tower-wise' },
+        { label: 'Type Wise Unit Status', href: '/reports/inventory/type-wise' },
+        { label: 'Unit Cost', href: '/reports/inventory/unit-cost' },
+      ]},
+      { label: 'Applicant Detail', children: [
+        { label: 'Search Customer', href: '/reports/applicant/search' },
+        { label: 'Applicant Payment File', href: '/reports/applicant/payment-file' },
+        { label: 'Master Report', href: '/reports/applicant/master' },
+        { label: 'Customer Detail', href: '/reports/applicant/customer-detail' },
+        { label: 'Birthday Report', href: '/reports/applicant/birthday' },
+      ]},
+      { label: 'Collection', children: [
+        { label: 'Collection Report', href: '/reports/collection' },
+        { label: 'Customer Wise Collection', href: '/reports/collection/customer-wise' },
+        { label: 'Charges Wise Collection', href: '/reports/collection/charges-wise' },
+        { label: 'Customer Wise Balance', href: '/reports/collection/customer-balance' },
+      ]},
+      { label: 'Dues', children: [
+        { label: 'Due Report', href: '/reports/dues' },
+        { label: 'Customer Wise Dues', href: '/reports/dues/customer-wise' },
+        { label: 'Due Date Wise', href: '/reports/dues/due-date-wise' },
+        { label: 'Ageing MIS', href: '/reports/dues/ageing-mis' },
+      ]},
+      { label: 'Sales Reports', children: [
+        { label: 'Cumulative Sales', href: '/reports/sales' },
+        { label: 'Tower Wise Sales', href: '/reports/sales/tower-wise' },
+        { label: 'Project Summary', href: '/reports/sales/project-summary' },
+        { label: 'Booking Record', href: '/reports/sales/booking-record' },
+      ]},
+      { label: 'Financial', children: [
+        { label: 'Bank Ledger', href: '/reports/financial/bank-ledger' },
+        { label: 'Bank Wise Balance', href: '/reports/financial/bank-balance' },
+      ]},
+      { label: 'Charge Detail', children: [
+        { label: 'Other Charge Report', href: '/reports/charges/other-charge' },
+        { label: 'Parking Report', href: '/reports/charges/parking' },
+        { label: 'PLC Report', href: '/reports/charges/plc' },
+        { label: 'IFMS Report', href: '/reports/charges/ifms' },
+        { label: 'Addon Report', href: '/reports/charges/addon' },
+      ]},
+      { label: 'MIS', children: [
+        { label: 'Project Wise Summary', href: '/reports/mis/project-wise' },
+        { label: 'Company Wise Summary', href: '/reports/mis/company-wise' },
+      ]},
+    ],
+  },
+  {
+    label: 'Broker',
+    items: [
+      { label: 'Broker', children: [
+        { label: 'Application (Add Broker)', href: '/broker/application' },
+        { label: 'View / Edit', href: '/broker/view' },
+        { label: 'Project Mapping', href: '/broker/project-mapping' },
+        { label: 'Sub Broker Mapping', href: '/broker/sub-broker' },
+      ]},
+      { label: 'Broker Setup', children: [
+        { label: 'Broker TDS Master', href: '/broker/setup/tds-master' },
+        { label: 'Broker Service Tax Master', href: '/broker/setup/service-tax' },
+      ]},
+      { label: 'Broker Reports', children: [
+        { label: 'Summary', href: '/broker/reports/summary' },
+        { label: 'Sold Units', href: '/broker/reports/sold-units' },
+        { label: 'Broker Wise Booking', href: '/broker/reports/booking' },
+      ]},
+      { label: 'Investor / Hold', children: [
+        { label: 'Hold Unit', href: '/broker/hold/hold' },
+        { label: 'Unhold Unit', href: '/broker/hold/unhold' },
+      ]},
+    ],
+  },
+  {
+    label: 'Email / SMS',
+    items: [
+      { label: 'Email', children: [
+        { label: 'Email Setup', href: '/communication/email/setup' },
+        { label: 'Email Test', href: '/communication/email/test' },
+        { label: 'Email History', href: '/communication/email/history' },
+      ]},
+      { label: 'SMS', children: [
+        { label: 'SMS Setup', href: '/communication/sms/setup' },
+        { label: 'SMS Tracker', href: '/communication/sms/tracker' },
+      ]},
+      { label: 'Send Email / SMS', href: '/communication/send' },
+      { label: 'Address Book', children: [
+        { label: 'Address Book', href: '/communication/address-book' },
+        { label: 'Groups', href: '/communication/address-book/groups' },
+      ]},
+    ],
+  },
+  {
+    label: 'Possession',
+    items: [
+      { label: 'Possession Date', href: '/possession/possession-date' },
+      { label: 'Penalty', children: [
+        { label: 'Penalty Configuration', href: '/possession/penalty-config' },
+      ]},
+      { label: 'Holding', children: [
+        { label: 'Holding Charge Master', href: '/possession/holding-charge' },
+        { label: 'Handover', href: '/possession/handover' },
+      ]},
+      { label: 'Registry Report', href: '/possession/registry' },
+      { label: 'Customer NOC Request', href: '/possession/noc-request' },
+      { label: 'Final Statement', href: '/possession/final-statement' },
+    ],
+  },
 ];
 
 export default function NavMenu() {
