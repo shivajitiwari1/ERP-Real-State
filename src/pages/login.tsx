@@ -28,9 +28,14 @@ export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState('');
   const [showPass, setShowPass] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => { const t = initTheme(); setTheme(t); }, []);
+  useEffect(() => {
+    setMounted(true);
+    const t = initTheme();
+    setTheme(t);
+  }, []);
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({ resolver: zodResolver(schema) });
 

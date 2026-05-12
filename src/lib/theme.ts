@@ -4,11 +4,13 @@ export function getStoredTheme(): 'light' | 'dark' {
 }
 
 export function applyTheme(theme: 'light' | 'dark') {
+  if (typeof document === 'undefined') return;
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('erp-theme', theme);
+  try { localStorage.setItem('erp-theme', theme); } catch (_) {}
 }
 
-export function initTheme() {
+export function initTheme(): 'light' | 'dark' {
+  if (typeof window === 'undefined') return 'light';
   const stored = getStoredTheme();
   applyTheme(stored);
   return stored;

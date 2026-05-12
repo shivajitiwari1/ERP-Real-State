@@ -240,15 +240,16 @@ input::placeholder, textarea::placeholder { color: var(--text-muted) !important;
 /* ── Page content fade ──────────────────────────────── */
 .page-content { animation: fadeUp 0.3s ease both; }
 
-/* ── Shadcn overrides ───────────────────────────────── */
-.bg-white { background: var(--bg-card) !important; }
-.bg-gray-50 { background: var(--bg-secondary) !important; }
-.bg-gray-100 { background: var(--bg-secondary) !important; }
-.text-gray-400 { color: var(--text-muted) !important; }
-.text-gray-500 { color: var(--text-muted) !important; }
-.text-gray-600 { color: var(--text-muted) !important; }
-.text-slate-700, .text-slate-800 { color: var(--text) !important; }
-.border { border-color: var(--border) !important; }
-.border-b { border-color: var(--border) !important; }
-.border-t { border-color: var(--border) !important; }
-.shadow-sm { box-shadow: var(--shadow-sm) !important; }
+/* ── Dark mode Tailwind overrides (only when dark theme active) ── */
+[data-theme="dark"] .bg-white { background: var(--bg-card) !important; }
+[data-theme="dark"] .bg-gray-50 { background: var(--bg-secondary) !important; }
+[data-theme="dark"] .bg-gray-100 { background: var(--bg-secondary) !important; }
+[data-theme="dark"] .text-gray-400 { color: var(--text-muted) !important; }
+[data-theme="dark"] .text-gray-500 { color: var(--text-muted) !important; }
+[data-theme="dark"] .text-gray-600 { color: var(--text-muted) !important; }
+[data-theme="dark"] .text-slate-700,
+[data-theme="dark"] .text-slate-800 { color: var(--text) !important; }
+[data-theme="dark"] .border { border-color: var(--border) !important; }
+[data-theme="dark"] .border-b { border-color: var(--border) !important; }
+[data-theme="dark"] .border-t { border-color: var(--border) !important; }
+[data-theme="dark"] .shadow-sm { box-shadow: var(--shadow-sm) !important; }
