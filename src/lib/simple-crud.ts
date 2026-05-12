@@ -16,7 +16,7 @@ export function simpleCrudHandler(ModelClass: ModelStatic<Model>, schema: z.ZodO
       }
       if (req.method === 'POST') {
         const parsed = schema.safeParse(req.body);
-        if (!parsed.success) return badRequest(res, parsed.error.errors[0].message);
+        if (!parsed.success) return badRequest(res, parsed.error.issues[0]?.message ?? 'Validation error');
         const record = await ModelClass.create(parsed.data as any);
         return created(res, record);
       }
@@ -24,7 +24,7 @@ export function simpleCrudHandler(ModelClass: ModelStatic<Model>, schema: z.ZodO
         const { id, ...data } = req.body;
         if (!id) return badRequest(res, 'ID required');
         const parsed = schema.safeParse(data);
-        if (!parsed.success) return badRequest(res, parsed.error.errors[0].message);
+        if (!parsed.success) return badRequest(res, parsed.error.issues[0]?.message ?? 'Validation error');
         await ModelClass.update(parsed.data as any, { where: { id } });
         return ok(res, await ModelClass.findByPk(id));
       }

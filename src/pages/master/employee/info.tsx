@@ -1,36 +1,32 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import PageHeader from '@/components/shared/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-const schema = z.object({
-  id: z.number().optional(),
-  code: z.string().min(1, 'Required'), salutation: z.string().min(1, 'Required'),
-  firstName: z.string().min(1, 'Required'), middleName: z.string().optional(),
-  lastName: z.string().min(1, 'Required'),
-  departmentId: z.coerce.number().int().positive('Select department'),
-  designation: z.string().optional(), mobile: z.string().min(10, 'Valid mobile required'),
-  email: z.string().email('Valid email required'),
-  isAdmin: z.coerce.boolean().default(false), isTransfer: z.coerce.boolean().default(false),
-  roleType: z.enum(['employee', 'call_center']).default('employee'),
-  managerId: z.coerce.number().optional().nullable(),
-  joiningDate: z.string().optional(), isActive: z.coerce.boolean().default(true),
-});
-type FD = z.infer<typeof schema>;
+type FD = {
+  id?: number;
+  code: string; salutation: string;
+  firstName: string; middleName?: string; lastName: string;
+  departmentId: number; designation?: string;
+  mobile: string; email: string;
+  isAdmin: boolean; isTransfer: boolean;
+  roleType: 'employee' | 'call_center';
+  managerId?: number | null; joiningDate?: string; isActive: boolean;
+};
 
 export default function EmployeeInfoPage() {
   const qc = useQueryClient();
   const { data: employees = [] } = useQuery({ queryKey: ['employees'], queryFn: () => axios.get('/api/master/employee/info').then(r => r.data.data) });
   const { data: departments = [] } = useQuery({ queryKey: ['departments'], queryFn: () => axios.get('/api/master/employee/department').then(r => r.data.data) });
-  const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<FD>({ resolver: zodResolver(schema) });
+  const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<FD>({
+    defaultValues: { isAdmin: false, isTransfer: false, isActive: true, roleType: 'employee' },
+  });
   const editingId = watch('id');
   const save = useMutation({
-    mutationFn: (d: FD) => d.id ? axios.put('/api/master/employee/info', d) : axios.post('/api/master/employee/info', d),
+    mutationFn: (d: FD) => d.id ? axios.put('/api/master/employee/info', d) : axios.post('/api/master/employee/info', { ...d, departmentId: Number(d.departmentId), managerId: d.managerId ? Number(d.managerId) : null }),
     onSuccess: () => { qc.invalidateQueries({ queryKey: ['employees'] }); reset(); },
   });
   const F = ({ label, name, type = 'text', cls = '' }: any) => (
@@ -57,7 +53,7 @@ export default function EmployeeInfoPage() {
             <F label="Middle Name" name="middleName" />
             <F label="Last Name *" name="lastName" />
             <div><Label className="text-xs">Department *</Label>
-              <select {...register('departmentId')} className="w-full border rounded px-2 h-9 text-sm mt-1">
+              <select {...register('departmentId', { valueAsNumber: true })} className="w-full border rounded px-2 h-9 text-sm mt-1">
                 <option value="">--Select--</option>
                 {(departments as any[]).map((d: any) => <option key={d.id} value={d.id}>{d.name}</option>)}
               </select>

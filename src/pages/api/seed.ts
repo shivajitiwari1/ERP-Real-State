@@ -6,7 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (process.env.NODE_ENV !== 'development') return res.status(404).end();
   try {
     await syncDatabase();
-    const [role] = await Role.findOrCreate({ where: { name: 'Admin' }, defaults: { description: 'Full access' } });
+    const [role] = await Role.findOrCreate({ where: { name: 'Admin' }, defaults: { name: 'Admin', description: 'Full access' } });
     const [dept] = await Department.findOrCreate({ where: { name: 'IT' } });
     const [emp] = await Employee.findOrCreate({
       where: { code: 'EMP001' },

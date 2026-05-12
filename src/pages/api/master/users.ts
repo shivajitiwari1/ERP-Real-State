@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     if (req.method === 'POST') {
       const parsed = createSchema.safeParse(req.body);
-      if (!parsed.success) return badRequest(res, parsed.error.errors[0].message);
+      if (!parsed.success) return badRequest(res, parsed.error.issues[0]?.message ?? 'Validation error');
       const existing = await User.findOne({ where: { username: parsed.data.username } });
       if (existing) return badRequest(res, 'Username already exists');
       const passwordHash = await bcrypt.hash(parsed.data.password, 12);
@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     if (req.method === 'PUT') {
       const parsed = updateSchema.safeParse(req.body);
-      if (!parsed.success) return badRequest(res, parsed.error.errors[0].message);
+      if (!parsed.success) return badRequest(res, parsed.error.issues[0]?.message ?? 'Validation error');
       const { id, password, ...data } = parsed.data;
       const updateData: any = data;
       if (password) updateData.passwordHash = await bcrypt.hash(password, 12);

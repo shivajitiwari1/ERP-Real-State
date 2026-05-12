@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     if (req.method === 'POST') {
       const parsed = schema.safeParse(req.body);
-      if (!parsed.success) return badRequest(res, parsed.error.errors[0].message);
+      if (!parsed.success) return badRequest(res, parsed.error.issues[0]?.message ?? 'Validation error');
       const emp = await Employee.create(parsed.data as any);
       return created(res, emp);
     }
@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { id, ...data } = req.body;
       if (!id) return badRequest(res, 'ID required');
       const parsed = schema.safeParse(data);
-      if (!parsed.success) return badRequest(res, parsed.error.errors[0].message);
+      if (!parsed.success) return badRequest(res, parsed.error.issues[0]?.message ?? 'Validation error');
       await Employee.update(parsed.data as any, { where: { id } });
       return ok(res, await Employee.findByPk(id, { include: [{ model: Department }] }));
     }

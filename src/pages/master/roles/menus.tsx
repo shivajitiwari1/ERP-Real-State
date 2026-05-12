@@ -26,11 +26,11 @@ export default function RoleMenusPage() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['role-menus', roleId] }),
   });
 
-  const categories = [...new Set((menuData?.allPages ?? []).map((p: any) => p.category as string))];
+  const categories = Array.from(new Set<string>((menuData?.allPages ?? []).map((p: any) => p.category as string)));
 
   function toggleAll(cat: string, checked: boolean) {
     const urls = (menuData?.allPages ?? []).filter((p: any) => p.category === cat).map((p: any) => p.url as string);
-    setSelected(prev => checked ? [...new Set([...prev, ...urls])] : prev.filter(u => !urls.includes(u)));
+    setSelected(prev => checked ? Array.from(new Set<string>([...prev, ...urls])) : prev.filter(u => !urls.includes(u)));
   }
 
   return (

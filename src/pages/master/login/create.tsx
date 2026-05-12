@@ -1,27 +1,24 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import PageHeader from '@/components/shared/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-const schema = z.object({
-  employeeId: z.coerce.number().int().positive('Select employee'),
-  username: z.string().min(3, 'Min 3 characters'),
-  password: z.string().min(6, 'Min 6 characters'),
-  roleId: z.coerce.number().int().positive('Select role'),
-});
-type FD = z.infer<typeof schema>;
+type FD = {
+  employeeId: number;
+  username: string;
+  password: string;
+  roleId: number;
+};
 
 export default function CreateLoginPage() {
   const qc = useQueryClient();
   const { data: employees = [] } = useQuery({ queryKey: ['employees'], queryFn: () => axios.get('/api/master/employee/info').then(r => r.data.data) });
   const { data: roles = [] } = useQuery({ queryKey: ['roles'], queryFn: () => axios.get('/api/master/roles').then(r => r.data.data) });
   const { data: users = [] } = useQuery({ queryKey: ['users'], queryFn: () => axios.get('/api/master/users').then(r => r.data.data) });
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FD>({ resolver: zodResolver(schema) });
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FD>();
   const save = useMutation({
     mutationFn: (d: FD) => axios.post('/api/master/users', d),
     onSuccess: () => { qc.invalidateQueries({ queryKey: ['users'] }); reset(); },
@@ -31,7 +28,7 @@ export default function CreateLoginPage() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <div className="bg-white p-4 rounded border shadow-sm">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Create Login</h3>
-          <form onSubmit={handleSubmit(d => save.mutate(d))} className="space-y-3">
+          <form onSubmit={handleSubmit(d => save.mutate({ ...d, employeeId: Number(d.employeeId), roleId: Number(d.roleId) }))} className="space-y-3">
             <div><Label className="text-xs">Employee *</Label>
               <select {...register('employeeId')} className="w-full border rounded px-2 h-9 text-sm mt-1">
                 <option value="">-- Select Employee --</option>
