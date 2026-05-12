@@ -209,31 +209,40 @@ const NAV: NavModule[] = [
 /* ── Sub-item with fly-out ── */
 function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
   const [open, setOpen] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function enter() {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setOpen(true);
+  }
+  function leave() {
+    timerRef.current = setTimeout(() => setOpen(false), 180);
+  }
 
   if (item.href && !item.children) {
     return (
       <Link href={item.href} className="erp-dropdown-item" onClick={onClose}
-        style={{ fontSize: 13, padding: '9px 16px', color: 'var(--text)' }}>
+        style={{ fontSize: 13, padding: '10px 16px', color: 'var(--text)' }}>
         {item.label}
       </Link>
     );
   }
 
   return (
-    <div style={{ position: 'relative' }}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}>
+    <div style={{ position: 'relative' }} onMouseEnter={enter} onMouseLeave={leave}>
       <div className="erp-dropdown-item"
-        style={{ justifyContent: 'space-between', fontSize: 13, padding: '9px 16px', color: 'var(--text)', fontWeight: 500 }}>
+        style={{ justifyContent: 'space-between', fontSize: 13, padding: '10px 16px', color: 'var(--text)', fontWeight: 500, background: open ? 'var(--row-hover)' : undefined }}>
         <span>{item.label}</span>
-        <span style={{ fontSize: 10, color: 'var(--text-muted)', marginLeft: 16 }}>›</span>
+        <span style={{ fontSize: 11, color: '#F97316', marginLeft: 16, fontWeight: 700 }}>›</span>
       </div>
       {open && item.children && (
         <div className="erp-dropdown"
-          style={{ position: 'absolute', left: '100%', top: -1, minWidth: 210, zIndex: 9999 }}>
+          onMouseEnter={enter}
+          onMouseLeave={leave}
+          style={{ position: 'absolute', left: '100%', top: 0, minWidth: 210, zIndex: 9999 }}>
           {item.children.map(child => (
             <Link key={child.href} href={child.href} className="erp-dropdown-item"
-              style={{ fontSize: 13, padding: '9px 16px', color: 'var(--text)' }}
+              style={{ fontSize: 13, padding: '10px 16px', color: 'var(--text)' }}
               onClick={onClose}>
               {child.label}
             </Link>
@@ -295,15 +304,13 @@ export default function NavMenu() {
                 <span style={{ fontSize: 9, opacity: 0.7, marginLeft: 2, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease', display: 'inline-block' }}>▾</span>
               </button>
 
-              {/* Dropdown panel */}
+              {/* Dropdown panel — NO overflow:hidden here, it would clip fly-out sub-menus */}
               {isOpen && (
                 <div className="erp-dropdown"
-                  style={{ position: 'absolute', top: '100%', left: 0, minWidth: 230, zIndex: 9999 }}>
-                  <div style={{ borderRadius: 10, overflow: 'hidden', maxHeight: '75vh', overflowY: 'auto' }}>
-                    {module.items.map((item) => (
-                      <SubItem key={item.label} item={item} onClose={() => setOpen(null)} />
-                    ))}
-                  </div>
+                  style={{ position: 'absolute', top: '100%', left: 0, minWidth: 230, zIndex: 9999, maxHeight: '75vh', overflowY: 'auto' }}>
+                  {module.items.map((item) => (
+                    <SubItem key={item.label} item={item} onClose={() => setOpen(null)} />
+                  ))}
                 </div>
               )}
             </div>

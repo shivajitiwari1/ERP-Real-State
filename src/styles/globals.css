@@ -257,6 +257,11 @@ label, .erp-label {
 [data-theme="dark"] .badge-yellow { color: #FCD34D; }
 
 /* ── Dropdown ───────────────────────────────────────── */
+/*
+ * IMPORTANT: overflow must stay visible here.
+ * overflow:hidden would clip absolutely positioned fly-out sub-menus.
+ * Border-radius rounding is handled by first/last-child on items instead.
+ */
 .erp-dropdown {
   position: absolute;
   background: var(--bg-card);
@@ -268,10 +273,25 @@ label, .erp-label {
   animation: fadeUp 0.15s ease both;
   overflow: visible;
 }
-.erp-dropdown-inner { overflow: hidden; border-radius: 10px; }
+
+/* First item gets top border-radius so hover bg respects container rounding */
+.erp-dropdown > *:first-child .erp-dropdown-item,
+.erp-dropdown > a.erp-dropdown-item:first-child {
+  border-radius: 10px 10px 0 0;
+}
+.erp-dropdown > *:last-child .erp-dropdown-item,
+.erp-dropdown > a.erp-dropdown-item:last-child {
+  border-radius: 0 0 10px 10px;
+  border-bottom: none;
+}
+.erp-dropdown > *:only-child .erp-dropdown-item,
+.erp-dropdown > a.erp-dropdown-item:only-child {
+  border-radius: 10px;
+}
+
 .erp-dropdown-item {
   display: flex; align-items: center;
-  padding: 9px 16px;
+  padding: 10px 16px;
   font-size: 13px; color: var(--text);
   text-decoration: none; transition: background 0.1s, color 0.1s;
   cursor: pointer; white-space: nowrap; gap: 8px;
