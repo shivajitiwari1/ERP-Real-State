@@ -1,0 +1,117 @@
+import Link from 'next/link';
+import { useState } from 'react';
+
+type NavChild = { label: string; href: string; };
+type NavItem = { label: string; href?: string; children?: NavChild[]; };
+type NavModule = { label: string; items: NavItem[]; };
+
+const NAV: NavModule[] = [
+  {
+    label: 'Set Master',
+    items: [
+      { label: 'Company Creation', href: '/master/company' },
+      { label: 'Set Up', children: [
+        { label: 'Project Type Creation', href: '/master/setup/project-type' },
+        { label: 'Area Type Creation', href: '/master/setup/area-type' },
+        { label: 'Currency Configuration', href: '/master/setup/currency' },
+        { label: 'Customer Profession', href: '/master/setup/profession' },
+        { label: 'Company Bank', href: '/master/setup/bank/company' },
+        { label: 'Customer Bank', href: '/master/setup/bank/customer' },
+        { label: 'Loan Bank', href: '/master/setup/bank/loan' },
+        { label: 'Country Master', href: '/master/setup/country' },
+        { label: 'Letter Head Format', href: '/master/setup/letterhead' },
+        { label: 'Activity Reminders', href: '/master/setup/reminders' },
+      ]},
+      { label: 'Employee Login Creation', children: [
+        { label: 'Department', href: '/master/employee/department' },
+        { label: 'Employee Information', href: '/master/employee/info' },
+        { label: 'Report', href: '/master/employee/report' },
+        { label: 'Set Manager', href: '/master/employee/manager' },
+        { label: 'Team Master', href: '/master/employee/team' },
+        { label: 'Employee Tree', href: '/master/employee/tree' },
+        { label: 'Create Login', href: '/master/login/create' },
+        { label: 'View Login', href: '/master/login/view' },
+      ]},
+      { label: 'Documents', children: [
+        { label: 'Document Type Creation', href: '/master/documents/type' },
+        { label: 'Document Dispatch Master', href: '/master/documents/dispatch-master' },
+      ]},
+      { label: 'Customized Letters', children: [
+        { label: 'Create Letter', href: '/master/letters/create' },
+      ]},
+      { label: 'Security', children: [
+        { label: 'Change Password', href: '/master/security/password' },
+        { label: 'Login History', href: '/master/security/history' },
+        { label: 'IP Security', href: '/master/security/ip' },
+      ]},
+      { label: 'Role and Menu', children: [
+        { label: 'Role Creation', href: '/master/roles/create' },
+        { label: 'Role Wise Menus', href: '/master/roles/menus' },
+      ]},
+      { label: 'Administrator Role', children: [
+        { label: 'Customer Audit Track', href: '/master/admin/audit' },
+        { label: 'Receipt Locking', href: '/master/admin/receipt-lock' },
+        { label: 'Customer History', href: '/master/admin/history' },
+        { label: 'Delete Customer', href: '/master/admin/delete-customer' },
+        { label: 'Delete Receipt', href: '/master/admin/delete-receipt' },
+      ]},
+    ],
+  },
+  { label: 'Set Projects', items: [{ label: 'Coming in Phase 2', href: '/' }] },
+  { label: 'Application', items: [{ label: 'Coming in Phase 3', href: '/' }] },
+  { label: 'Reports', items: [{ label: 'Coming in Phase 5', href: '/' }] },
+  { label: 'Broker', items: [{ label: 'Coming in Phase 6', href: '/' }] },
+  { label: 'Email / SMS', items: [{ label: 'Coming in Phase 7', href: '/' }] },
+  { label: 'Possession', items: [{ label: 'Coming in Phase 8', href: '/' }] },
+];
+
+export default function NavMenu() {
+  const [open, setOpen] = useState<string | null>(null);
+
+  return (
+    <nav className="bg-slate-800 text-white relative z-40">
+      <ul className="flex">
+        {NAV.map(module => (
+          <li key={module.label} className="relative"
+            onMouseEnter={() => setOpen(module.label)}
+            onMouseLeave={() => setOpen(null)}>
+            <button className="px-4 py-3 text-sm font-medium hover:bg-slate-600 flex items-center gap-1 whitespace-nowrap">
+              {module.label} <span className="text-xs opacity-70">▾</span>
+            </button>
+            {open === module.label && (
+              <ul className="absolute left-0 top-full bg-white text-gray-800 shadow-xl z-50 min-w-52 border border-gray-200">
+                {module.items.map(item => (
+                  <li key={item.label} className="relative group/sub">
+                    {item.href && !item.children ? (
+                      <Link href={item.href} className="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700">
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <>
+                        <div className="flex items-center justify-between px-4 py-2 text-sm hover:bg-orange-50 cursor-default font-medium text-gray-600">
+                          <span>{item.label}</span>
+                          <span className="text-xs">▶</span>
+                        </div>
+                        {item.children && (
+                          <ul className="absolute left-full top-0 bg-white shadow-xl border border-gray-200 min-w-52 hidden group-hover/sub:block z-50">
+                            {item.children.map((child) => (
+                              <li key={child.label}>
+                                <Link href={child.href} className="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700">
+                                  {child.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
