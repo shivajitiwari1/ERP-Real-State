@@ -1,112 +1,101 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 type NavChild = { label: string; href: string; };
 type NavItem = { label: string; href?: string; children?: NavChild[]; };
-type NavModule = { label: string; items: NavItem[]; };
+type NavModule = { label: string; icon: string; items: NavItem[]; };
 
 const NAV: NavModule[] = [
   {
-    label: 'Set Master',
+    label: 'Set Master', icon: '⚙️',
     items: [
       { label: 'Company Creation', href: '/master/company' },
       { label: 'Set Up', children: [
-        { label: 'Project Type Creation', href: '/master/setup/project-type' },
-        { label: 'Area Type Creation', href: '/master/setup/area-type' },
-        { label: 'Currency Configuration', href: '/master/setup/currency' },
+        { label: 'Project Type', href: '/master/setup/project-type' },
+        { label: 'Area Type', href: '/master/setup/area-type' },
+        { label: 'Currency', href: '/master/setup/currency' },
         { label: 'Customer Profession', href: '/master/setup/profession' },
         { label: 'Company Bank', href: '/master/setup/bank/company' },
         { label: 'Customer Bank', href: '/master/setup/bank/customer' },
         { label: 'Loan Bank', href: '/master/setup/bank/loan' },
         { label: 'Country Master', href: '/master/setup/country' },
-        { label: 'Letter Head Format', href: '/master/setup/letterhead' },
+        { label: 'Letter Head', href: '/master/setup/letterhead' },
         { label: 'Activity Reminders', href: '/master/setup/reminders' },
       ]},
-      { label: 'Employee Login Creation', children: [
+      { label: 'Employee', children: [
         { label: 'Department', href: '/master/employee/department' },
-        { label: 'Employee Information', href: '/master/employee/info' },
-        { label: 'Report', href: '/master/employee/report' },
+        { label: 'Employee Info', href: '/master/employee/info' },
         { label: 'Set Manager', href: '/master/employee/manager' },
         { label: 'Team Master', href: '/master/employee/team' },
-        { label: 'Employee Tree', href: '/master/employee/tree' },
         { label: 'Create Login', href: '/master/login/create' },
         { label: 'View Login', href: '/master/login/view' },
-      ]},
-      { label: 'Documents', children: [
-        { label: 'Document Type Creation', href: '/master/documents/type' },
-        { label: 'Document Dispatch Master', href: '/master/documents/dispatch-master' },
-      ]},
-      { label: 'Customized Letters', children: [
-        { label: 'Create Letter', href: '/master/letters/create' },
       ]},
       { label: 'Security', children: [
         { label: 'Change Password', href: '/master/security/password' },
         { label: 'Login History', href: '/master/security/history' },
         { label: 'IP Security', href: '/master/security/ip' },
       ]},
-      { label: 'Role and Menu', children: [
+      { label: 'Roles & Menus', children: [
         { label: 'Role Creation', href: '/master/roles/create' },
         { label: 'Role Wise Menus', href: '/master/roles/menus' },
       ]},
-      { label: 'Administrator Role', children: [
+      { label: 'Admin', children: [
         { label: 'Customer Audit Track', href: '/master/admin/audit' },
         { label: 'Receipt Locking', href: '/master/admin/receipt-lock' },
-        { label: 'Customer History', href: '/master/admin/history' },
         { label: 'Delete Customer', href: '/master/admin/delete-customer' },
         { label: 'Delete Receipt', href: '/master/admin/delete-receipt' },
       ]},
     ],
   },
   {
-    label: 'Set Projects',
+    label: 'Set Projects', icon: '🏗️',
     items: [
       { label: 'Create Project', children: [
         { label: 'Add Project', href: '/projects/create/project' },
         { label: 'Add Tower/Plot', href: '/projects/create/tower' },
-        { label: 'Add Base Floor', href: '/projects/create/base-floor' },
         { label: 'Floor Creation', href: '/projects/create/floor' },
         { label: 'Unit Type Creation', href: '/projects/create/unit-type' },
-        { label: 'Floor Wise Unit Allocation', href: '/projects/create/units' },
+        { label: 'Floor Wise Units', href: '/projects/create/units' },
       ]},
       { label: 'Edit Project', children: [
         { label: 'Edit Project', href: '/projects/edit/project' },
         { label: 'Edit Tower', href: '/projects/edit/tower' },
         { label: 'Edit Floor', href: '/projects/edit/floor' },
       ]},
-      { label: 'Payment Plan Setup', children: [
+      { label: 'Payment Plan', children: [
         { label: 'Payment Plan Creation', href: '/projects/payment-plan/create' },
         { label: 'Stage Master', href: '/projects/payment-plan/stages' },
         { label: 'Set Booking Amount', href: '/projects/payment-plan/booking-amount' },
         { label: 'Create Installment', href: '/projects/payment-plan/installment' },
-        { label: 'Reminder Days Config', href: '/projects/payment-plan/reminders' },
+        { label: 'Reminder Days', href: '/projects/payment-plan/reminders' },
       ]},
-      { label: 'Set Rate', children: [
+      { label: 'Rate', children: [
         { label: 'Change Rate', href: '/projects/rate/change' },
         { label: 'Rate Report', href: '/projects/rate/report' },
       ]},
-      { label: 'Project Set Up', children: [
+      { label: 'Charge Masters', children: [
         { label: 'Other Charges', href: '/projects/setup/other-charge' },
         { label: 'PLC Charges', href: '/projects/setup/plc' },
         { label: 'Addon Charges', href: '/projects/setup/addon' },
         { label: 'IFMS Charges', href: '/projects/setup/ifms' },
         { label: 'Tax Master', href: '/projects/setup/tax' },
-        { label: 'GST Configuration', href: '/projects/setup/gst' },
-        { label: 'Project Config Detail', href: '/projects/setup/project-config' },
+        { label: 'GST Config', href: '/projects/setup/gst' },
       ]},
     ],
   },
   {
-    label: 'Application',
+    label: 'Application', icon: '📋',
     items: [
       { label: 'Booking', children: [
-        { label: 'Booking Form (New)', href: '/application/booking/new' },
-        { label: 'Edit Booking Form', href: '/application/booking/edit' },
+        { label: 'New Booking', href: '/application/booking/new' },
         { label: 'Customer Register', href: '/application/booking/list' },
-        { label: 'Unit Shifting Process', href: '/application/booking/shift' },
+        { label: 'Edit Booking', href: '/application/booking/edit' },
+        { label: 'Unit Shift', href: '/application/booking/shift' },
       ]},
-      { label: 'Agreement of Unit', children: [
+      { label: 'Agreement', children: [
         { label: 'Agreement Form', href: '/application/agreement/form' },
-        { label: 'Agreement Cancellation', href: '/application/agreement/cancellation' },
+        { label: 'Cancellation', href: '/application/agreement/cancellation' },
       ]},
       { label: 'Receipt Process', children: [
         { label: 'Receipt Generation', href: '/application/receipts/new' },
@@ -125,20 +114,14 @@ const NAV: NavModule[] = [
       ]},
       { label: 'Banking', children: [
         { label: 'Cheque Deposit', href: '/application/banking/deposit' },
-        { label: 'Verify Cheque Status', href: '/application/banking/status' },
+        { label: 'Cheque Status', href: '/application/banking/status' },
       ]},
-      { label: 'Interest Calculation', children: [
+      { label: 'Interest', children: [
         { label: 'Interest Scheduler', href: '/application/interest/scheduler' },
         { label: 'Interest Waiver', href: '/application/interest/waiver' },
         { label: 'Grace Period', href: '/application/interest/grace' },
       ]},
-      { label: 'Print / Documents', children: [
-        { label: 'Print Demand', href: '/application/print/demand' },
-        { label: 'Applicant Ledger', href: '/application/print/ledger' },
-        { label: 'Documents', href: '/application/documents' },
-        { label: 'Loan Process', href: '/application/loan' },
-      ]},
-      { label: 'Surrender / Cancellation', children: [
+      { label: 'Surrender', children: [
         { label: 'Application', href: '/application/surrender/apply' },
         { label: 'Report', href: '/application/surrender/report' },
       ]},
@@ -146,31 +129,35 @@ const NAV: NavModule[] = [
         { label: 'Application', href: '/application/transfer/apply' },
         { label: 'Transfer Report', href: '/application/transfer/report' },
       ]},
+      { label: 'Print / Docs', children: [
+        { label: 'Print Demand', href: '/application/print/demand' },
+        { label: 'Applicant Ledger', href: '/application/print/ledger' },
+        { label: 'Loan Process', href: '/application/loan' },
+      ]},
     ],
   },
   {
-    label: 'Reports',
+    label: 'Reports', icon: '📊',
     items: [
       { label: 'Inventory', children: [
         { label: 'Unit Status', href: '/reports/inventory/unit-status' },
         { label: 'Availability Sheet', href: '/reports/inventory/availability' },
         { label: 'Unit Sold', href: '/reports/inventory/unit-sold' },
-        { label: 'Tower Wise Unit Status', href: '/reports/inventory/tower-wise' },
-        { label: 'Type Wise Unit Status', href: '/reports/inventory/type-wise' },
-        { label: 'Unit Cost', href: '/reports/inventory/unit-cost' },
+        { label: 'Tower Wise', href: '/reports/inventory/tower-wise' },
+        { label: 'Type Wise', href: '/reports/inventory/type-wise' },
       ]},
-      { label: 'Applicant Detail', children: [
+      { label: 'Applicant', children: [
         { label: 'Search Customer', href: '/reports/applicant/search' },
-        { label: 'Applicant Payment File', href: '/reports/applicant/payment-file' },
+        { label: 'Payment File', href: '/reports/applicant/payment-file' },
         { label: 'Master Report', href: '/reports/applicant/master' },
         { label: 'Customer Detail', href: '/reports/applicant/customer-detail' },
         { label: 'Birthday Report', href: '/reports/applicant/birthday' },
       ]},
       { label: 'Collection', children: [
         { label: 'Collection Report', href: '/reports/collection' },
-        { label: 'Customer Wise Collection', href: '/reports/collection/customer-wise' },
-        { label: 'Charges Wise Collection', href: '/reports/collection/charges-wise' },
-        { label: 'Customer Wise Balance', href: '/reports/collection/customer-balance' },
+        { label: 'Customer Wise', href: '/reports/collection/customer-wise' },
+        { label: 'Charges Wise', href: '/reports/collection/charges-wise' },
+        { label: 'Customer Balance', href: '/reports/collection/customer-balance' },
       ]},
       { label: 'Dues', children: [
         { label: 'Due Report', href: '/reports/dues' },
@@ -178,7 +165,7 @@ const NAV: NavModule[] = [
         { label: 'Due Date Wise', href: '/reports/dues/due-date-wise' },
         { label: 'Ageing MIS', href: '/reports/dues/ageing-mis' },
       ]},
-      { label: 'Sales Reports', children: [
+      { label: 'Sales', children: [
         { label: 'Cumulative Sales', href: '/reports/sales' },
         { label: 'Tower Wise Sales', href: '/reports/sales/tower-wise' },
         { label: 'Project Summary', href: '/reports/sales/project-summary' },
@@ -188,127 +175,132 @@ const NAV: NavModule[] = [
         { label: 'Bank Ledger', href: '/reports/financial/bank-ledger' },
         { label: 'Bank Wise Balance', href: '/reports/financial/bank-balance' },
       ]},
-      { label: 'Charge Detail', children: [
-        { label: 'Other Charge Report', href: '/reports/charges/other-charge' },
-        { label: 'Parking Report', href: '/reports/charges/parking' },
-        { label: 'PLC Report', href: '/reports/charges/plc' },
-        { label: 'IFMS Report', href: '/reports/charges/ifms' },
-        { label: 'Addon Report', href: '/reports/charges/addon' },
-      ]},
       { label: 'MIS', children: [
-        { label: 'Project Wise Summary', href: '/reports/mis/project-wise' },
-        { label: 'Company Wise Summary', href: '/reports/mis/company-wise' },
+        { label: 'Project Wise', href: '/reports/mis/project-wise' },
+        { label: 'Company Wise', href: '/reports/mis/company-wise' },
       ]},
     ],
   },
   {
-    label: 'Broker',
+    label: 'Broker', icon: '🤝',
     items: [
-      { label: 'Broker', children: [
-        { label: 'Application (Add Broker)', href: '/broker/application' },
-        { label: 'View / Edit', href: '/broker/view' },
-        { label: 'Project Mapping', href: '/broker/project-mapping' },
-        { label: 'Sub Broker Mapping', href: '/broker/sub-broker' },
-      ]},
-      { label: 'Broker Setup', children: [
-        { label: 'Broker TDS Master', href: '/broker/setup/tds-master' },
-        { label: 'Broker Service Tax Master', href: '/broker/setup/service-tax' },
-      ]},
+      { label: 'Add Broker', href: '/broker/application' },
+      { label: 'View / Edit', href: '/broker/view' },
+      { label: 'Project Mapping', href: '/broker/project-mapping' },
       { label: 'Broker Reports', children: [
         { label: 'Summary', href: '/broker/reports/summary' },
         { label: 'Sold Units', href: '/broker/reports/sold-units' },
         { label: 'Broker Wise Booking', href: '/broker/reports/booking' },
       ]},
-      { label: 'Investor / Hold', children: [
+      { label: 'Hold Units', children: [
         { label: 'Hold Unit', href: '/broker/hold/hold' },
         { label: 'Unhold Unit', href: '/broker/hold/unhold' },
       ]},
     ],
   },
   {
-    label: 'Email / SMS',
+    label: 'Email / SMS', icon: '📨',
     items: [
-      { label: 'Email', children: [
-        { label: 'Email Setup', href: '/communication/email/setup' },
-        { label: 'Email Test', href: '/communication/email/test' },
-        { label: 'Email History', href: '/communication/email/history' },
-      ]},
-      { label: 'SMS', children: [
-        { label: 'SMS Setup', href: '/communication/sms/setup' },
-        { label: 'SMS Tracker', href: '/communication/sms/tracker' },
-      ]},
+      { label: 'Email Setup', href: '/communication/email/setup' },
+      { label: 'Email History', href: '/communication/email/history' },
+      { label: 'SMS Setup', href: '/communication/sms/setup' },
+      { label: 'SMS Tracker', href: '/communication/sms/tracker' },
       { label: 'Send Email / SMS', href: '/communication/send' },
-      { label: 'Address Book', children: [
-        { label: 'Address Book', href: '/communication/address-book' },
-        { label: 'Groups', href: '/communication/address-book/groups' },
-      ]},
+      { label: 'Address Book', href: '/communication/address-book' },
     ],
   },
   {
-    label: 'Possession',
+    label: 'Possession', icon: '🏠',
     items: [
       { label: 'Possession Date', href: '/possession/possession-date' },
-      { label: 'Penalty', children: [
-        { label: 'Penalty Configuration', href: '/possession/penalty-config' },
-      ]},
-      { label: 'Holding', children: [
-        { label: 'Holding Charge Master', href: '/possession/holding-charge' },
-        { label: 'Handover', href: '/possession/handover' },
-      ]},
+      { label: 'Penalty Config', href: '/possession/penalty-config' },
+      { label: 'Holding Charge', href: '/possession/holding-charge' },
+      { label: 'Handover', href: '/possession/handover' },
+      { label: 'NOC Request', href: '/possession/noc-request' },
       { label: 'Registry Report', href: '/possession/registry' },
-      { label: 'Customer NOC Request', href: '/possession/noc-request' },
       { label: 'Final Statement', href: '/possession/final-statement' },
     ],
   },
 ];
 
+function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
+  const [open, setOpen] = useState(false);
+  if (item.href && !item.children) {
+    return (
+      <Link href={item.href} className="erp-dropdown-item" onClick={onClose}>
+        {item.label}
+      </Link>
+    );
+  }
+  return (
+    <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} style={{ position: 'relative' }}>
+      <div className="erp-dropdown-item" style={{ justifyContent: 'space-between', paddingRight: 10 }}>
+        <span>{item.label}</span>
+        <span style={{ fontSize: 9, opacity: 0.5 }}>▶</span>
+      </div>
+      {open && item.children && (
+        <div className="erp-dropdown animate-fade-in" style={{ position: 'absolute', left: '100%', top: 0, minWidth: 190 }}>
+          {item.children.map(child => (
+            <Link key={child.href} href={child.href} className="erp-dropdown-item" onClick={onClose}>
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function NavMenu() {
   const [open, setOpen] = useState<string | null>(null);
+  const router = useRouter();
+  const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function handleEnter(label: string) {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    setOpen(label);
+  }
+  function handleLeave() {
+    closeTimeout.current = setTimeout(() => setOpen(null), 120);
+  }
 
   return (
-    <nav className="bg-slate-800 text-white relative z-40">
-      <ul className="flex">
+    <nav style={{ background: 'var(--bg-navbar)', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'sticky', top: 54, zIndex: 40, transition: 'background 0.3s ease' }}>
+      <div style={{ display: 'flex', alignItems: 'stretch', maxWidth: '100%', overflowX: 'auto', padding: '0 8px' }}>
         {NAV.map(module => (
-          <li key={module.label} className="relative"
-            onMouseEnter={() => setOpen(module.label)}
-            onMouseLeave={() => setOpen(null)}>
-            <button className="px-4 py-3 text-sm font-medium hover:bg-slate-600 flex items-center gap-1 whitespace-nowrap">
-              {module.label} <span className="text-xs opacity-70">▾</span>
+          <div key={module.label} style={{ position: 'relative' }} onMouseEnter={() => handleEnter(module.label)} onMouseLeave={handleLeave}>
+            <button style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '0 14px', height: 42, background: open === module.label ? 'rgba(249,115,22,0.12)' : 'transparent', border: 'none', cursor: 'pointer', transition: 'all 0.15s ease', whiteSpace: 'nowrap', color: open === module.label ? '#F97316' : '#94A3B8', fontFamily: "'Outfit', sans-serif", fontWeight: 500, fontSize: 12.5, borderBottom: open === module.label ? '2px solid #F97316' : '2px solid transparent' }}>
+              <span style={{ fontSize: 13 }}>{module.icon}</span>
+              {module.label}
+              <span style={{ fontSize: 8, opacity: 0.6, marginLeft: 1 }}>▾</span>
             </button>
+
             {open === module.label && (
-              <ul className="absolute left-0 top-full bg-white text-gray-800 shadow-xl z-50 min-w-52 border border-gray-200">
-                {module.items.map(item => (
-                  <li key={item.label} className="relative group/sub">
-                    {item.href && !item.children ? (
-                      <Link href={item.href} className="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700">
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <>
-                        <div className="flex items-center justify-between px-4 py-2 text-sm hover:bg-orange-50 cursor-default font-medium text-gray-600">
-                          <span>{item.label}</span>
-                          <span className="text-xs">▶</span>
-                        </div>
-                        {item.children && (
-                          <ul className="absolute left-full top-0 bg-white shadow-xl border border-gray-200 min-w-52 hidden group-hover/sub:block z-50">
-                            {item.children.map((child) => (
-                              <li key={child.label}>
-                                <Link href={child.href} className="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700">
-                                  {child.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </>
-                    )}
-                  </li>
+              <div className="erp-dropdown" style={{ top: '100%', left: 0 }}>
+                {/* Direct href items */}
+                {module.items.filter(i => i.href && !i.children).map(item => (
+                  <Link key={item.href} href={item.href!} className="erp-dropdown-item" onClick={() => setOpen(null)}>
+                    {item.label}
+                  </Link>
                 ))}
-              </ul>
+                {/* Group items */}
+                {module.items.filter(i => !i.href || i.children).length > 0 && (
+                  <>
+                    {module.items.filter(i => i.children || (!i.href)).map((item, idx) => (
+                      <div key={item.label}>
+                        {idx === 0 && module.items.some(x => x.href && !x.children) && (
+                          <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }} />
+                        )}
+                        <SubItem item={item} onClose={() => setOpen(null)} />
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </nav>
   );
 }

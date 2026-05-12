@@ -4,6 +4,7 @@ interface Column<T> {
   header: string;
   accessor: keyof T | ((row: T) => ReactNode);
   className?: string;
+  align?: 'left' | 'right' | 'center';
 }
 
 interface Props<T> {
@@ -16,13 +17,13 @@ export default function DataTable<T extends { id: number | string }>({
   columns, data, emptyMessage = 'No records found',
 }: Props<T>) {
   return (
-    <div className="border rounded overflow-hidden">
-      <table className="w-full text-sm border-collapse">
+    <div style={{ border: '1px solid var(--border)', borderRadius: 10, overflow: 'hidden' }}>
+      <table className="erp-table">
         <thead>
-          <tr className="bg-slate-700 text-white">
-            <th className="px-3 py-2 text-left text-xs font-medium w-10">S.No.</th>
+          <tr>
+            <th style={{ width: 38 }}>S.No.</th>
             {columns.map(col => (
-              <th key={String(col.header)} className={`px-3 py-2 text-left text-xs font-medium ${col.className ?? ''}`}>
+              <th key={String(col.header)} style={{ textAlign: col.align === 'right' ? 'right' : col.align === 'center' ? 'center' : 'left' }}>
                 {col.header}
               </th>
             ))}
@@ -31,18 +32,16 @@ export default function DataTable<T extends { id: number | string }>({
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan={columns.length + 1} className="text-center text-gray-400 py-8 italic">
+              <td colSpan={columns.length + 1} style={{ textAlign: 'center', padding: '32px', color: 'var(--text-muted)', fontStyle: 'italic', fontSize: 13 }}>
                 {emptyMessage}
               </td>
             </tr>
           ) : data.map((row, i) => (
-            <tr key={row.id} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-              <td className="px-3 py-2 text-gray-400">{i + 1}</td>
+            <tr key={row.id}>
+              <td style={{ color: 'var(--text-muted)', fontSize: 11 }}>{i + 1}</td>
               {columns.map(col => (
-                <td key={String(col.header)} className={`px-3 py-2 ${col.className ?? ''}`}>
-                  {typeof col.accessor === 'function'
-                    ? col.accessor(row)
-                    : String(row[col.accessor] ?? '')}
+                <td key={String(col.header)} style={{ textAlign: col.align === 'right' ? 'right' : col.align === 'center' ? 'center' : 'left' }}>
+                  {typeof col.accessor === 'function' ? col.accessor(row) : String(row[col.accessor] ?? '')}
                 </td>
               ))}
             </tr>

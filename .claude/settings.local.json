@@ -13,7 +13,11 @@
       "Bash(Select-Object -Last 30)",
       "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; $env:NODE_ENV = \"production\"; npx next build 2>&1 | Select-Object -Last 40)",
       "PowerShell(Get-Process node -ErrorAction SilentlyContinue | ForEach-Object { \"$\\($_.Id\\) CPU:$\\([math]::Round\\($_.CPU,1\\)\\)s Mem:$\\([math]::Round\\($_.WorkingSet/1MB,0\\)\\)MB\" })",
-      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; Get-ChildItem .next -ErrorAction SilentlyContinue | ForEach-Object { try { Remove-Item $_.FullName -Recurse -Force -ErrorAction Stop } catch {} }; Remove-Item .next -Force -Recurse -ErrorAction SilentlyContinue; Write-Output \"Cleared\"; $output = npx next build 2>&1; $output | Select-Object -Last 25)"
+      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; Get-ChildItem .next -ErrorAction SilentlyContinue | ForEach-Object { try { Remove-Item $_.FullName -Recurse -Force -ErrorAction Stop } catch {} }; Remove-Item .next -Force -Recurse -ErrorAction SilentlyContinue; Write-Output \"Cleared\"; $output = npx next build 2>&1; $output | Select-Object -Last 25)",
+      "Bash(node -e \"const bcrypt = require\\('bcryptjs'\\); bcrypt.hash\\('admin@123', 12\\).then\\(h => console.log\\(h\\)\\)\")",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue | Where-Object CPU -gt 5 | ForEach-Object { \"PID:$\\($_.Id\\) CPU:$\\([math]::Round\\($_.CPU,0\\)\\)s\" })",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
+      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; Get-ChildItem -Path \".next\" -Recurse -ErrorAction SilentlyContinue | Where-Object { -not $_.PSIsContainer } | Remove-Item -Force -ErrorAction SilentlyContinue; Remove-Item -Path \".next\" -Recurse -Force -ErrorAction SilentlyContinue; Write-Output \"Cache cleared\"; $output = npx next build 2>&1; $output | Select-Object -Last 20)"
     ],
     "additionalDirectories": [
       "e:\\Demo Website\\ERP\\docs\\superpowers"

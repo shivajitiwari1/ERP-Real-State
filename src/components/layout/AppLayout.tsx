@@ -1,15 +1,21 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import TopBar from './TopBar';
 import NavMenu from './NavMenu';
+import { initTheme } from '@/lib/theme';
 
 export default function AppLayout({ children }: { children: ReactNode }) {
+  useEffect(() => { initTheme(); }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', transition: 'background 0.3s ease' }}>
       <TopBar />
       <NavMenu />
-      <main className="flex-1 p-4 max-w-screen-2xl mx-auto w-full">{children}</main>
-      <footer className="bg-slate-800 text-white text-xs text-center py-2">
-        <span className="text-orange-400">RealBoost ERP</span> · Copyright © 2026 · Powered by 4QT Technologies
+      <main style={{ flex: 1, padding: '20px', maxWidth: 1600, margin: '0 auto', width: '100%' }} className="page-content">
+        {children}
+      </main>
+      <footer style={{ background: 'var(--bg-navbar)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: 11, fontWeight: 600, color: '#F97316', letterSpacing: '0.02em' }}>RealBoost ERP</span>
+        <span style={{ fontSize: 11, color: '#334155' }}>Powered by <span style={{ color: '#475569', fontWeight: 600 }}>4QT Technologies</span> · Version 5.0</span>
       </footer>
     </div>
   );
