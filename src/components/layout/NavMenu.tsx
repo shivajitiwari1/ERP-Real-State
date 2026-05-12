@@ -230,7 +230,7 @@ function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
       </div>
       {open && item.children && (
         <div className="erp-dropdown"
-          style={{ position: 'absolute', left: '100%', top: -1, minWidth: 200, zIndex: 300 }}>
+          style={{ position: 'absolute', left: '100%', top: -1, minWidth: 210, zIndex: 9999 }}>
           {item.children.map(child => (
             <Link key={child.href} href={child.href} className="erp-dropdown-item"
               style={{ fontSize: 13, padding: '9px 16px', color: 'var(--text)' }}
@@ -271,7 +271,8 @@ export default function NavMenu() {
   return (
     <nav ref={navRef}
       style={{ background: 'var(--bg-navbar)', borderBottom: '1px solid rgba(255,255,255,0.06)', position: 'sticky', top: 54, zIndex: 50, transition: 'background 0.3s ease' }}>
-      <div style={{ display: 'flex', alignItems: 'stretch', overflowX: 'auto', padding: '0 6px' }}>
+      {/* overflow must NOT be hidden/auto here — it clips absolutely positioned dropdowns */}
+      <div style={{ display: 'flex', alignItems: 'stretch', padding: '0 6px', overflow: 'visible' }}>
         {NAV.map(module => {
           const isOpen = open === module.label;
           return (
@@ -296,12 +297,13 @@ export default function NavMenu() {
 
               {/* Dropdown panel */}
               {isOpen && (
-                <div
-                  className="erp-dropdown"
-                  style={{ position: 'absolute', top: '100%', left: 0, minWidth: 220, maxHeight: '80vh', overflowY: 'auto' }}>
-                  {module.items.map((item) => (
-                    <SubItem key={item.label} item={item} onClose={() => setOpen(null)} />
-                  ))}
+                <div className="erp-dropdown"
+                  style={{ position: 'absolute', top: '100%', left: 0, minWidth: 230, zIndex: 9999 }}>
+                  <div style={{ borderRadius: 10, overflow: 'hidden', maxHeight: '75vh', overflowY: 'auto' }}>
+                    {module.items.map((item) => (
+                      <SubItem key={item.label} item={item} onClose={() => setOpen(null)} />
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
