@@ -7,7 +7,11 @@
       "Bash(git init *)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(node -e \"require\\('./src/models/index.ts'\\)\")",
+      "Bash(Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object -Last 30)",
+      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; $env:NODE_ENV = \"production\"; npx next build 2>&1 | Select-Object -Last 40)"
     ],
     "additionalDirectories": [
       "e:\\Demo Website\\ERP\\docs\\superpowers"

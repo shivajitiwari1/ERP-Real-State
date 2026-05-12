@@ -34,6 +34,20 @@ export const ALL_PAGES = [
   { url: '/master/admin/receipt-lock', name: 'Receipt Locking', category: 'Set Master' },
   { url: '/master/admin/delete-customer', name: 'Delete Customer', category: 'Set Master' },
   { url: '/master/admin/delete-receipt', name: 'Delete Receipt', category: 'Set Master' },
+  // Set Projects
+  { url: '/projects/create/project', name: 'Add Project', category: 'Set Projects' },
+  { url: '/projects/create/tower', name: 'Add Tower/Plot', category: 'Set Projects' },
+  { url: '/projects/create/floor', name: 'Floor Creation', category: 'Set Projects' },
+  { url: '/projects/create/unit-type', name: 'Unit Type Creation', category: 'Set Projects' },
+  { url: '/projects/create/units', name: 'Floor Wise Unit Allocation', category: 'Set Projects' },
+  { url: '/projects/payment-plan/create', name: 'Payment Plan Creation', category: 'Set Projects' },
+  { url: '/projects/payment-plan/installment', name: 'Create Installment', category: 'Set Projects' },
+  { url: '/projects/rate/change', name: 'Change Rate', category: 'Set Projects' },
+  { url: '/projects/setup/other-charge', name: 'Other Charges', category: 'Set Projects' },
+  { url: '/projects/setup/plc', name: 'PLC Charges', category: 'Set Projects' },
+  { url: '/projects/setup/addon', name: 'Addon Charges', category: 'Set Projects' },
+  { url: '/projects/setup/ifms', name: 'IFMS Charges', category: 'Set Projects' },
+  { url: '/master/admin/delete-receipt', name: 'Delete Receipt', category: 'Set Master' },
 ];
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
