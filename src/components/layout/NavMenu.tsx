@@ -222,7 +222,7 @@ function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
   if (item.href && !item.children) {
     return (
       <Link href={item.href} className="erp-dropdown-item" onClick={onClose}
-        style={{ fontSize: 13, padding: '10px 16px', color: 'var(--text)' }}>
+        style={{ fontSize: 14, padding: '11px 18px', color: 'var(--text)', fontWeight: 500 }}>
         {item.label}
       </Link>
     );
@@ -231,9 +231,9 @@ function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
   return (
     <div style={{ position: 'relative' }} onMouseEnter={enter} onMouseLeave={leave}>
       <div className="erp-dropdown-item"
-        style={{ justifyContent: 'space-between', fontSize: 13, padding: '10px 16px', color: 'var(--text)', fontWeight: 500, background: open ? 'var(--row-hover)' : undefined }}>
+        style={{ justifyContent: 'space-between', fontSize: 14, padding: '11px 18px', color: 'var(--text)', fontWeight: 600, background: open ? 'var(--row-hover)' : undefined }}>
         <span>{item.label}</span>
-        <span style={{ fontSize: 11, color: '#F97316', marginLeft: 16, fontWeight: 700 }}>›</span>
+        <span style={{ fontSize: 13, color: '#F97316', marginLeft: 16, fontWeight: 700 }}>›</span>
       </div>
       {open && item.children && (
         <div className="erp-dropdown"
@@ -242,7 +242,7 @@ function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
           style={{ position: 'absolute', left: '100%', top: 0, minWidth: 220, zIndex: 10000 }}>
           {item.children.map(child => (
             <Link key={child.href} href={child.href} className="erp-dropdown-item"
-              style={{ fontSize: 13, padding: '10px 16px', color: 'var(--text)' }}
+              style={{ fontSize: 14, padding: '11px 18px', color: 'var(--text)' }}
               onClick={onClose}>
               {child.label}
             </Link>
@@ -256,6 +256,7 @@ function SubItem({ item, onClose }: { item: NavItem; onClose: () => void }) {
 /* ── Main NavMenu ── */
 export default function NavMenu() {
   const [open, setOpen] = useState<string | null>(null);
+  const [isCompact, setIsCompact] = useState(false);
   const router = useRouter();
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -273,15 +274,111 @@ export default function NavMenu() {
   // Close on route change
   useEffect(() => { setOpen(null); }, [router.asPath]);
 
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 900px)');
+    const update = () => setIsCompact(media.matches);
+    update();
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', update);
+      return () => media.removeEventListener('change', update);
+    }
+    media.addListener(update);
+    return () => media.removeListener(update);
+  }, []);
+
   function toggle(label: string) {
     setOpen(prev => prev === label ? null : label);
   }
 
+  const activeModule = open ? NAV.find((module) => module.label === open) : null;
+
+  if (isCompact) {
+    return (
+      <nav
+        ref={navRef}
+        style={{ background: 'var(--bg-navbar)', borderBottom: '2px solid rgba(249,115,22,0.25)', position: 'sticky', top: 58, zIndex: 1000, transition: 'background 0.3s ease' }}
+      >
+        <div style={{ display: 'flex', alignItems: 'stretch', padding: '0 6px', overflowX: 'auto', overflowY: 'hidden', WebkitOverflowScrolling: 'touch' }}>
+          {NAV.map(module => {
+            const isOpen = open === module.label;
+            return (
+              <button
+                key={module.label}
+                onClick={() => toggle(module.label)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 5,
+                  padding: '0 10px',
+                  height: 42,
+                  background: isOpen ? 'rgba(249,115,22,0.16)' : 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                  whiteSpace: 'nowrap',
+                  color: isOpen ? '#F97316' : '#E2E8F0',
+                  fontFamily: "'Outfit', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 12,
+                  borderBottom: isOpen ? '2px solid #F97316' : '2px solid transparent',
+                  letterSpacing: '0.01em',
+                  flexShrink: 0,
+                }}
+              >
+                <span style={{ fontSize: 13 }}>{module.icon}</span>
+                {module.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {activeModule && (
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="erp-dropdown" style={{ position: 'static', borderRadius: 0, borderLeft: 'none', borderRight: 'none', borderBottom: 'none', boxShadow: 'none', animation: 'fadeIn 0.12s ease both' }}>
+              {activeModule.items.map((item) => {
+                if (item.href && !item.children) {
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="erp-dropdown-item"
+                      onClick={() => setOpen(null)}
+                      style={{ fontSize: 14, padding: '11px 14px', color: 'var(--text)', fontWeight: 500 }}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div key={item.label}>
+                    <div className="erp-dropdown-label" style={{ padding: '8px 14px 4px' }}>{item.label}</div>
+                    {item.children?.map(child => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="erp-dropdown-item"
+                        onClick={() => setOpen(null)}
+                        style={{ fontSize: 14, padding: '10px 14px 10px 24px', color: 'var(--text)' }}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </nav>
+    );
+  }
+
   return (
     <nav ref={navRef}
-      style={{ background: 'var(--bg-navbar)', borderBottom: '1px solid rgba(255,255,255,0.06)', position: 'sticky', top: 54, zIndex: 50, transition: 'background 0.3s ease' }}>
+      style={{ background: 'var(--bg-navbar)', borderBottom: '2px solid rgba(249,115,22,0.25)', position: 'sticky', top: 54, zIndex: 1000, transition: 'background 0.3s ease' }}>
       {/* overflow must NOT be hidden/auto here — it clips absolutely positioned dropdowns */}
-      <div style={{ display: 'flex', alignItems: 'stretch', padding: '0 6px', overflow: 'visible' }}>
+      <div style={{ display: 'flex', alignItems: 'stretch', padding: '0 8px', overflow: 'visible' }}>
         {NAV.map(module => {
           const isOpen = open === module.label;
           return (
@@ -290,18 +387,19 @@ export default function NavMenu() {
               <button
                 onClick={() => toggle(module.label)}
                 style={{
-                  display: 'flex', alignItems: 'center', gap: 6,
-                  padding: '0 13px', height: 42,
-                  background: isOpen ? 'rgba(249,115,22,0.14)' : 'transparent',
+                  display: 'flex', alignItems: 'center', gap: 7,
+                  padding: '0 16px', height: 50,
+                  background: isOpen ? 'rgba(249,115,22,0.16)' : 'transparent',
                   border: 'none', cursor: 'pointer',
                   transition: 'all 0.15s ease', whiteSpace: 'nowrap',
-                  color: isOpen ? '#F97316' : '#94A3B8',
-                  fontFamily: "'Outfit', sans-serif", fontWeight: 600, fontSize: 12.5,
-                  borderBottom: isOpen ? '2px solid #F97316' : '2px solid transparent',
+                  color: isOpen ? '#F97316' : '#E2E8F0',
+                  fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: 14,
+                  borderBottom: isOpen ? '3px solid #F97316' : '3px solid transparent',
+                  letterSpacing: '0.01em',
                 }}>
-                <span style={{ fontSize: 14 }}>{module.icon}</span>
+                <span style={{ fontSize: 16 }}>{module.icon}</span>
                 {module.label}
-                <span style={{ fontSize: 9, opacity: 0.7, marginLeft: 2, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease', display: 'inline-block' }}>▾</span>
+                <span style={{ fontSize: 10, opacity: 0.8, marginLeft: 1, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease', display: 'inline-block' }}>▾</span>
               </button>
 
               {/* Dropdown panel — NO overflow:hidden here, it would clip fly-out sub-menus */}

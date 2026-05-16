@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from 'react';
 import TopBar from './TopBar';
 import NavMenu from './NavMenu';
 import { initTheme } from '@/lib/theme';
+import SserpLogo from '@/components/shared/SserpLogo';
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   useEffect(() => { initTheme(); }, []);
@@ -15,8 +16,8 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <footer style={{ background: 'var(--bg-navbar)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '9px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: 11, fontWeight: 700, color: '#F97316', letterSpacing: '0.03em' }}>RealBoost ERP</span>
-        <span style={{ fontSize: 11, color: '#475569' }}>Powered by <strong style={{ color: '#64748B' }}>4QT Technologies</strong> · v5.0</span>
+        <SserpLogo iconSize={28} subTextColor="#475569" />
+        <span style={{ fontSize: 11, color: '#475569' }}>Real Estate ERP · v5.0</span>
       </footer>
     </div>
   );

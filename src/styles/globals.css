@@ -144,7 +144,7 @@ a { color: inherit; }
 .erp-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'DM Sans', sans-serif;
 }
 
@@ -161,7 +161,7 @@ a { color: inherit; }
   padding: 11px 16px;
   text-align: left;
   font-family: 'Outfit', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   white-space: nowrap;
@@ -181,7 +181,7 @@ a { color: inherit; }
   padding: 10px 16px;
   color: var(--text-table);
   vertical-align: middle;
-  font-size: 13px;
+  font-size: 15px;
   border-right: 1px solid var(--border-subtle);
 }
 .erp-table tbody td:last-child { border-right: none; }
@@ -194,7 +194,7 @@ a { color: inherit; }
   padding: 10px 16px;
   font-weight: 700;
   font-family: 'Outfit', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text);
 }
 
@@ -202,7 +202,7 @@ a { color: inherit; }
 .erp-table td:first-child,
 .erp-table th:first-child {
   color: #94A3B8;
-  font-size: 11px;
+  font-size: 13px;
   width: 40px;
   text-align: center;
 }

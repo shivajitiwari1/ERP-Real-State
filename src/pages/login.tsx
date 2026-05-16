@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { initTheme, applyTheme } from '@/lib/theme';
+import SserpLogo from '@/components/shared/SserpLogo';
 
 const schema = z.object({
   username: z.string().min(1, 'Username required'),
@@ -14,14 +15,14 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const S = {
-  page: { minHeight: '100vh', background: '#060D18', display: 'flex', alignItems: 'stretch' as const, fontFamily: "'DM Sans', sans-serif" },
-  left: { flex: 1, position: 'relative' as const, display: 'flex', flexDirection: 'column' as const, justifyContent: 'space-between', padding: '48px', overflow: 'hidden' as const },
-  right: { width: '100%', maxWidth: 460, background: '#0B1628', display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', padding: '48px 40px', position: 'relative' as const, borderLeft: '1px solid #1A2840' },
+  page: { minHeight: '100vh', background: '#060D18', display: 'flex', alignItems: 'stretch' as const, fontFamily: "'DM Sans', sans-serif", flexWrap: 'wrap' as const },
+  left: { flex: 1, position: 'relative' as const, flexDirection: 'column' as const, justifyContent: 'space-between', padding: '48px', overflow: 'hidden' as const },
+  right: { width: '100%', minWidth: 0, background: '#0B1628', display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', padding: '32px 24px', position: 'relative' as const, boxSizing: 'border-box' as const },
   field: { marginBottom: 18 },
-  label: { display: 'block', fontSize: 11, fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.06em', color: '#475569', marginBottom: 7, fontFamily: "'Outfit', sans-serif" },
-  input: { width: '100%', height: 46, padding: '0 14px 0 42px', background: 'rgba(255,255,255,0.04)', border: '1.5px solid #1A2840', borderRadius: 10, color: '#F1F5F9', fontSize: 14, fontFamily: "'DM Sans', sans-serif", outline: 'none', transition: 'all 0.15s ease' },
+  label: { display: 'block', fontSize: 15, fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.07em', color: '#94A3B8', marginBottom: 8, fontFamily: "'Outfit', sans-serif" },
+  input: { width: '100%', height: 48, padding: '0 14px 0 44px', background: 'rgba(255,255,255,0.05)', border: '1.5px solid rgba(255,255,255,0.12)', borderRadius: 10, color: '#F1F5F9', fontSize: 15, fontFamily: "'DM Sans', sans-serif", outline: 'none', transition: 'all 0.15s ease' },
   inputIcon: { position: 'absolute' as const, left: 14, top: '50%', transform: 'translateY(-50%)', fontSize: 15, pointerEvents: 'none' as const },
-  submit: { width: '100%', height: 48, background: 'linear-gradient(135deg, #F97316 0%, #EA6C0A 100%)', border: 'none', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, fontFamily: "'Outfit', sans-serif", letterSpacing: '0.04em', cursor: 'pointer', transition: 'all 0.15s ease', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, boxShadow: '0 4px 20px rgba(249,115,22,0.35)' },
+  submit: { width: '100%', height: 50, background: 'linear-gradient(135deg, #F97316 0%, #EA6C0A 100%)', border: 'none', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, fontFamily: "'Outfit', sans-serif", letterSpacing: '0.05em', cursor: 'pointer', transition: 'all 0.15s ease', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, boxShadow: '0 4px 20px rgba(249,115,22,0.35)' },
 };
 
 export default function LoginPage() {
@@ -37,7 +38,7 @@ export default function LoginPage() {
     setTheme(t);
   }, []);
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({ resolver: zodResolver(schema) });
+  const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   function toggleTheme() {
     const next = theme === 'dark' ? 'light' : 'dark';
@@ -57,47 +58,42 @@ export default function LoginPage() {
       <div style={S.left} className="hidden lg:flex">
         {/* Mesh blobs */}
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-          <div className="animate-mesh" style={{ position: 'absolute', top: '-15%', left: '-5%', width: '65%', height: '65%', background: 'radial-gradient(circle, rgba(249,115,22,0.16) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%' }} />
-          <div className="animate-mesh" style={{ position: 'absolute', bottom: '-10%', right: '5%', width: '55%', height: '55%', background: 'radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%)', filter: 'blur(50px)', borderRadius: '50%', animationDelay: '3s' }} />
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+          <div className="animate-mesh" style={{ position: 'absolute', top: '-15%', left: '-5%', width: '65%', height: '65%', background: 'radial-gradient(circle, rgba(249,115,22,0.28) 0%, transparent 70%)', filter: 'blur(45px)', borderRadius: '50%' }} />
+          <div className="animate-mesh" style={{ position: 'absolute', bottom: '-10%', right: '5%', width: '55%', height: '55%', background: 'radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)', filter: 'blur(45px)', borderRadius: '50%', animationDelay: '3s' }} />
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         </div>
 
         {/* Logo */}
         <div className="animate-fade-up" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
-              {[18, 18, 18, 9].map((h, i) => <div key={i} style={{ width: 18, height: h, background: '#F97316', borderRadius: 3 }} />)}
-            </div>
-            <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: 22, color: '#fff', letterSpacing: '-0.03em' }}>4QT</span>
-          </div>
+          <SserpLogo iconSize={72} textColor="#F1F5F9" subTextColor="#94A3B8" loginStyle />
         </div>
 
         {/* Hero text */}
         <div style={{ position: 'relative', zIndex: 1 }}>
           <div className="animate-fade-up-1">
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(249,115,22,0.1)', border: '1px solid rgba(249,115,22,0.22)', borderRadius: 99, padding: '5px 14px', marginBottom: 24 }}>
-              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#F97316', animation: 'pulseDot 2s ease infinite' }} />
-              <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.07em', color: '#F97316', fontFamily: "'Outfit', sans-serif", textTransform: 'uppercase' }}>Real Estate ERP · v5.0</span>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.4)', borderRadius: 99, padding: '6px 16px', marginBottom: 28 }}>
+              <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#F97316', animation: 'pulseDot 2s ease infinite' }} />
+              <span style={{ fontSize: 15, fontWeight: 700, letterSpacing: '0.07em', color: '#FB923C', fontFamily: "'Outfit', sans-serif", textTransform: 'uppercase' }}>SS GROUP - ERP · Real Estate · v5.0</span>
             </div>
-            <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 54, fontWeight: 800, color: '#F1F5F9', lineHeight: 1.04, letterSpacing: '-0.04em', margin: '0 0 20px' }}>
+            <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 54, fontWeight: 800, color: '#F8FAFC', lineHeight: 1.04, letterSpacing: '-0.04em', margin: '0 0 20px', textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
               Your Business<br /><span style={{ color: '#F97316' }}>At Your</span><br />Finger Tips.
             </h1>
           </div>
-          <p className="animate-fade-up-2" style={{ fontSize: 15, color: '#475569', lineHeight: 1.75, maxWidth: 380, margin: '0 0 36px' }}>
+          <p className="animate-fade-up-2" style={{ fontSize: 15, color: '#94A3B8', lineHeight: 1.8, maxWidth: 380, margin: '0 0 36px' }}>
             Manage projects, bookings, collections and possession from a single intelligent platform built for modern real estate operations.
           </p>
           <div className="animate-fade-up-3" style={{ display: 'flex', flexWrap: 'wrap', gap: 9 }}>
             {['Project Setup', 'Booking & CRM', 'Demand Engine', 'Collection MIS', 'Possession Flow'].map(f => (
-              <span key={f} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 99, padding: '6px 13px', fontSize: 12, color: '#64748B' }}>{f}</span>
+              <span key={f} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 99, padding: '7px 15px', fontSize: 15, color: '#CBD5E1', fontFamily: "'Outfit', sans-serif", fontWeight: 500 }}>{f}</span>
             ))}
           </div>
         </div>
 
-        <div style={{ position: 'relative', zIndex: 1, fontSize: 11, color: '#1E3A5F' }}>© 2026 4QT Technologies · RealBoost</div>
+        <div style={{ position: 'relative', zIndex: 1, fontSize: 15, color: '#475569' }}>© 2026 SS GROUP - ERP · All rights reserved</div>
       </div>
 
       {/* ── Right: Form ── */}
-      <div style={S.right}>
+      <div style={S.right} className="w-full lg:max-w-[520px] lg:border-l lg:border-white/10">
         {/* Theme toggle */}
         <button onClick={toggleTheme} title="Toggle theme" style={{ position: 'absolute', top: 20, right: 20, background: 'rgba(255,255,255,0.04)', border: '1px solid #1A2840', borderRadius: 8, width: 34, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 15, transition: 'border-color 0.15s' }}
           onMouseEnter={e => (e.currentTarget.style.borderColor = '#F97316')}
@@ -106,17 +102,37 @@ export default function LoginPage() {
         </button>
 
         {/* Mobile brand */}
-        <div className="lg:hidden animate-fade-up" style={{ marginBottom: 28, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
-            {[14, 14, 14, 7].map((h, i) => <div key={i} style={{ width: 14, height: h, background: '#F97316', borderRadius: 2 }} />)}
-          </div>
-          <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: 18, color: '#F1F5F9' }}>RealBoost</span>
+        <div className="lg:hidden animate-fade-up" style={{ marginBottom: 24, display: 'flex', justifyContent: 'center' }}>
+          <SserpLogo iconSize={52} textColor="#F1F5F9" subTextColor="#64748B" />
         </div>
 
         {/* Header */}
         <div className="animate-fade-up" style={{ marginBottom: 32 }}>
-          <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 26, fontWeight: 700, color: '#F1F5F9', margin: '0 0 5px', letterSpacing: '-0.03em' }}>Welcome back</h2>
-          <p style={{ fontSize: 13.5, color: '#475569', margin: 0 }}>Sign in to continue to RealBoost ERP</p>
+          <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 28, fontWeight: 700, color: '#F8FAFC', margin: '0 0 6px', letterSpacing: '-0.03em' }}>Welcome back</h2>
+          <p style={{ fontSize: 15, color: '#94A3B8', margin: 0, fontFamily: "'DM Sans', sans-serif" }}>Sign in to continue to <strong style={{ color: '#F97316', fontWeight: 600 }}>SS GROUP - ERP</strong></p>
+        </div>
+
+        {/* Demo credentials */}
+        <div className="animate-fade-up" style={{ marginBottom: 22 }}>
+          <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748B', marginBottom: 8, fontFamily: "'Outfit', sans-serif" }}>Demo Accounts — click to fill</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+            {[
+              { label: 'Admin', user: 'admin', pass: 'admin@123', color: '#F97316' },
+              { label: 'Manager', user: 'manager', pass: 'manager@123', color: '#3B82F6' },
+              { label: 'Staff', user: 'staff', pass: 'staff@123', color: '#22C55E' },
+            ].map(({ label, user, pass, color }) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => { setValue('username', user); setValue('password', pass); }}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 3, padding: '9px 12px', background: 'rgba(255,255,255,0.05)', border: `1px solid rgba(255,255,255,0.12)`, borderRadius: 10, cursor: 'pointer', transition: 'all 0.15s', textAlign: 'left', minWidth: 0, overflow: 'hidden', width: '100%' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = color; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.09)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.12)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)'; }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color, fontFamily: "'Outfit', sans-serif", textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</span>
+                <span style={{ fontSize: 11, color: '#94A3B8', fontFamily: 'monospace', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%', display: 'block' }}>{user} / {pass}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Form */}
@@ -125,35 +141,35 @@ export default function LoginPage() {
           <div style={S.field}>
             <label style={S.label}>Username</label>
             <div style={{ position: 'relative' }}>
-              <span style={{ ...S.inputIcon, color: '#334155' }}>👤</span>
+              <span style={{ ...S.inputIcon, color: '#64748B' }}>👤</span>
               <input {...register('username')} autoFocus autoComplete="username"
                 style={S.input} placeholder="Enter your username"
                 onFocus={e => { e.target.style.borderColor = '#F97316'; e.target.style.boxShadow = '0 0 0 3px rgba(249,115,22,0.12)'; e.target.style.background = 'rgba(249,115,22,0.04)'; }}
-                onBlur={e => { e.target.style.borderColor = '#1A2840'; e.target.style.boxShadow = 'none'; e.target.style.background = 'rgba(255,255,255,0.04)'; }} />
+                onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.12)'; e.target.style.boxShadow = 'none'; e.target.style.background = 'rgba(255,255,255,0.05)'; }} />
             </div>
-            {errors.username && <p style={{ fontSize: 11, color: '#EF4444', marginTop: 5 }}>{errors.username.message}</p>}
+            {errors.username && <p style={{ fontSize: 15, color: '#EF4444', marginTop: 5 }}>{errors.username.message}</p>}
           </div>
 
           {/* Password */}
           <div style={{ marginBottom: 22 }}>
             <label style={S.label}>Password</label>
             <div style={{ position: 'relative' }}>
-              <span style={{ ...S.inputIcon, color: '#334155' }}>🔒</span>
+              <span style={{ ...S.inputIcon, color: '#64748B' }}>🔒</span>
               <input {...register('password')} type={showPass ? 'text' : 'password'} autoComplete="current-password"
                 style={{ ...S.input, paddingRight: 44 }} placeholder="Enter your password"
                 onFocus={e => { e.target.style.borderColor = '#F97316'; e.target.style.boxShadow = '0 0 0 3px rgba(249,115,22,0.12)'; e.target.style.background = 'rgba(249,115,22,0.04)'; }}
-                onBlur={e => { e.target.style.borderColor = '#1A2840'; e.target.style.boxShadow = 'none'; e.target.style.background = 'rgba(255,255,255,0.04)'; }} />
-              <button type="button" onClick={() => setShowPass(!showPass)} style={{ position: 'absolute', right: 13, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, color: '#334155' }}>
+                onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.12)'; e.target.style.boxShadow = 'none'; e.target.style.background = 'rgba(255,255,255,0.05)'; }} />
+              <button type="button" onClick={() => setShowPass(!showPass)} style={{ position: 'absolute', right: 13, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 15, color: '#64748B' }}>
                 {showPass ? '🙈' : '👁️'}
               </button>
             </div>
-            {errors.password && <p style={{ fontSize: 11, color: '#EF4444', marginTop: 5 }}>{errors.password.message}</p>}
+            {errors.password && <p style={{ fontSize: 15, color: '#EF4444', marginTop: 5 }}>{errors.password.message}</p>}
           </div>
 
           {error && (
             <div style={{ background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.18)', borderRadius: 8, padding: '10px 14px', marginBottom: 18, display: 'flex', gap: 8, alignItems: 'center' }}>
-              <span style={{ fontSize: 13 }}>⚠️</span>
-              <span style={{ fontSize: 13, color: '#FCA5A5' }}>{error}</span>
+              <span style={{ fontSize: 15 }}>⚠️</span>
+              <span style={{ fontSize: 15, color: '#FCA5A5' }}>{error}</span>
             </div>
           )}
 
@@ -166,19 +182,19 @@ export default function LoginPage() {
         </form>
 
         {/* Tools */}
-        <div className="animate-fade-up-2" style={{ marginTop: 32, paddingTop: 24, borderTop: '1px solid #1A2840' }}>
-          <p style={{ fontSize: 10.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.07em', color: '#1E3A5F', marginBottom: 10, fontFamily: "'Outfit', sans-serif" }}>Quick Tools</p>
-          <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>
+        <div className="animate-fade-up-2" style={{ marginTop: 24, paddingTop: 18, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748B', marginBottom: 8, fontFamily: "'Outfit', sans-serif" }}>Quick Tools</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
             {[{ l: 'Area Conversion', h: '/tools/area-conversion', i: '📐' }, { l: 'EMI Calculator', h: '/tools/emi-calculator', i: '🧮' }, { l: 'My IP', h: '/tools/my-ip', i: '🌐' }].map(t => (
-              <Link key={t.h} href={t.h} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '5px 11px', background: 'rgba(255,255,255,0.02)', border: '1px solid #1A2840', borderRadius: 6, fontSize: 11.5, color: '#334155', textDecoration: 'none', transition: 'all 0.15s' }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#F97316'; (e.currentTarget as HTMLElement).style.color = '#F97316'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '#1A2840'; (e.currentTarget as HTMLElement).style.color = '#334155'; }}>
+              <Link key={t.h} href={t.h} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5, padding: '8px 6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, fontSize: 12, color: '#94A3B8', textDecoration: 'none', transition: 'all 0.15s', fontFamily: "'DM Sans', sans-serif", textAlign: 'center' as const }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#F97316'; (e.currentTarget as HTMLElement).style.color = '#F97316'; (e.currentTarget as HTMLElement).style.background = 'rgba(249,115,22,0.08)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.12)'; (e.currentTarget as HTMLElement).style.color = '#94A3B8'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)'; }}>
                 {t.i} {t.l}
               </Link>
             ))}
           </div>
         </div>
-        <p style={{ marginTop: 24, fontSize: 10.5, color: '#1A2840', textAlign: 'center' }}>© 2026 4QT Technologies · All rights reserved</p>
+        <p style={{ marginTop: 16, fontSize: 11, color: '#475569', textAlign: 'center', fontFamily: "'DM Sans', sans-serif" }}>© 2026 SS GROUP - ERP · All rights reserved</p>
       </div>
     </div>
   );

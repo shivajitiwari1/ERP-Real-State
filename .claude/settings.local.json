@@ -18,7 +18,8 @@
       "PowerShell(Get-Process node -ErrorAction SilentlyContinue | Where-Object CPU -gt 5 | ForEach-Object { \"PID:$\\($_.Id\\) CPU:$\\([math]::Round\\($_.CPU,0\\)\\)s\" })",
       "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
       "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; Get-ChildItem -Path \".next\" -Recurse -ErrorAction SilentlyContinue | Where-Object { -not $_.PSIsContainer } | Remove-Item -Force -ErrorAction SilentlyContinue; Remove-Item -Path \".next\" -Recurse -Force -ErrorAction SilentlyContinue; Write-Output \"Cache cleared\"; $output = npx next build 2>&1; $output | Select-Object -Last 20)",
-      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; Start-Sleep 3; Get-ChildItem \".next\" -Recurse -ErrorAction SilentlyContinue | Where-Object { -not $_.PSIsContainer } | Remove-Item -Force -ErrorAction SilentlyContinue; Remove-Item \".next\" -Recurse -Force -ErrorAction SilentlyContinue; Write-Output \"Cleaned\"; $output = npx next build 2>&1; $output | Select-Object -Last 15)"
+      "PowerShell(Set-Location \"e:\\\\Demo Website\\\\ERP\"; Start-Sleep 3; Get-ChildItem \".next\" -Recurse -ErrorAction SilentlyContinue | Where-Object { -not $_.PSIsContainer } | Remove-Item -Force -ErrorAction SilentlyContinue; Remove-Item \".next\" -Recurse -Force -ErrorAction SilentlyContinue; Write-Output \"Cleaned\"; $output = npx next build 2>&1; $output | Select-Object -Last 15)",
+      "Bash(xargs grep *)"
     ],
     "additionalDirectories": [
       "e:\\Demo Website\\ERP\\docs\\superpowers"

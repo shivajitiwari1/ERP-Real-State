@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import Head from 'next/head';
 import AppLayout from '@/components/layout/AppLayout';
 import { initTheme } from '@/lib/theme';
 import '@/styles/globals.css';
@@ -42,6 +43,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        </Head>
         <AppContent Component={Component} pageProps={pageProps} />
       </QueryClientProvider>
     </SessionProvider>
