@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import 'mysql2'; // explicit import — forces Vercel NFT bundler to include mysql2
 
 const isLocal = (process.env.DB_HOST || 'localhost') === 'localhost';
 
