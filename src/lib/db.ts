@@ -1,5 +1,7 @@
 import { Sequelize } from 'sequelize';
 
+const isLocal = (process.env.DB_HOST || 'localhost') === 'localhost';
+
 const sequelize = new Sequelize(
   process.env.DB_NAME!,
   process.env.DB_USER!,
@@ -11,6 +13,7 @@ const sequelize = new Sequelize(
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
     pool: { max: 10, min: 0, acquire: 30000, idle: 10000 },
     define: { timestamps: true, underscored: true },
+    dialectOptions: isLocal ? {} : { ssl: { rejectUnauthorized: false } },
   }
 );
 
