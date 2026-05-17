@@ -57,6 +57,7 @@ function TF({ label, name, register, error, type = 'text', required = false }: a
 export default function CompanyPage() {
   const qc = useQueryClient();
   const formRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [logoPath, setLogoPath] = useState<string>('');
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -82,6 +83,14 @@ export default function CompanyPage() {
   });
 
   const editingId = watch('id');
+  const companyName = watch('name');
+
+  function clearLogo() {
+    setLogoPath('');
+    setLogoName('');
+    setLogoFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  }
 
   const save = useMutation({
     mutationFn: (d: FD) => {
@@ -93,15 +102,14 @@ export default function CompanyPage() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['company'] });
       reset();
-      setLogoPath('');
-      setLogoName('');
-      setLogoFile(null);
+      clearLogo();
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => axios.delete('/api/master/company', { data: { id } }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['company'] }),
+    onError: (err: any) => alert(err?.response?.data?.message ?? 'Delete failed'),
   });
 
   function onEdit(c: any) {
@@ -231,7 +239,14 @@ export default function CompanyPage() {
                 name="stateId"
                 control={control}
                 render={({ field }) => (
-                  <SelectPrimitive.Root value={field.value} onValueChange={field.onChange}>
+                  <SelectPrimitive.Root
+                    value={field.value}
+                    onValueChange={(val) => {
+                      field.onChange(val);
+                      const found = (states as any[]).find((s: any) => String(s.id) === val);
+                      if (found) setValue('stateText', found.name);
+                    }}
+                  >
                     <SelectPrimitive.Trigger className="flex h-7 w-full items-center justify-between border border-gray-300 bg-white px-2 text-xs rounded-none focus:outline-none">
                       <SelectPrimitive.Value placeholder="<-Select->" />
                       <SelectPrimitive.Icon><ChevronDown className="h-3 w-3 text-gray-500" /></SelectPrimitive.Icon>
@@ -266,6 +281,7 @@ export default function CompanyPage() {
             </Label>
             <div className="flex items-center gap-2">
               <input
+                ref={fileInputRef}
                 type="file"
                 accept="image/*"
                 className="text-xs border border-gray-300 p-0.5"
@@ -294,10 +310,10 @@ export default function CompanyPage() {
             <Button type="submit" size="sm" className="h-7 text-xs bg-orange-500 hover:bg-orange-600 rounded-none px-4" disabled={save.isPending}>
               {save.isPending ? 'Saving...' : 'SAVE'}
             </Button>
-            <Button type="button" size="sm" variant="outline" className="h-7 text-xs rounded-none px-4 border-gray-400" onClick={handleView} disabled={!editingId && !watch('name')}>
+            <Button type="button" size="sm" variant="outline" className="h-7 text-xs rounded-none px-4 border-gray-400" onClick={handleView} disabled={!editingId && !companyName}>
               VIEW
             </Button>
-            <Button type="button" size="sm" variant="outline" className="h-7 text-xs rounded-none px-4 border-gray-400" onClick={() => { reset(); setLogoPath(''); setLogoName(''); setLogoFile(null); }}>
+            <Button type="button" size="sm" variant="outline" className="h-7 text-xs rounded-none px-4 border-gray-400" onClick={() => { reset(); clearLogo(); }}>
               CLOSE
             </Button>
           </div>
