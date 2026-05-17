@@ -12,8 +12,10 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       <TopBar />
       <NavMenu />
       {/* Full-width main content — no max-width cap */}
-      <main style={{ flex: 1, padding: '20px 24px', width: '100%' }} className="page-content">
-        {children}
+      <main style={{ flex: 1, padding: '24px', width: '100%', background: 'var(--bg)' }} className="page-content">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' }}>
+          {children}
+        </div>
       </main>
       <footer style={{ background: 'var(--bg-navbar)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '9px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <SserpLogo iconSize={28} subTextColor="#475569" />
