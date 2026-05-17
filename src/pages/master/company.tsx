@@ -126,6 +126,7 @@ export default function CompanyPage() {
       panNo: c.panNo ?? '',
       vatRegNo: c.vatRegNo ?? '',
       payableAt: c.payableAt ?? '',
+      stateId: c.stateId ? String(c.stateId) : '',
       logo: c.logo ?? '',
     });
     setLogoPath(c.logo ?? '');
