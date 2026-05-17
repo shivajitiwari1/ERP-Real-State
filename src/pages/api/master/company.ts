@@ -49,6 +49,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await Company.update(parsed.data as any, { where: { id } });
       return ok(res, await Company.findByPk(id), 'Updated successfully');
     }
+    if (req.method === 'DELETE') {
+      const { id } = req.body;
+      if (!id) return badRequest(res, 'ID required');
+      await Company.destroy({ where: { id } });
+      return ok(res, null, 'Company deleted successfully');
+    }
     res.status(405).end();
   } catch (err) {
     return serverError(res, err);
