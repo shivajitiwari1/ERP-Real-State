@@ -134,7 +134,10 @@ export default function CompanyPage() {
       panNo: c.panNo ?? '',
       vatRegNo: c.vatRegNo ?? '',
       payableAt: c.payableAt ?? '',
-      stateId: c.stateId ? String(c.stateId) : '',
+      stateId: (() => {
+        const match = (states as any[]).find((s: any) => s.name === c.state);
+        return match ? String(match.id) : '';
+      })(),
       logo: c.logo ?? '',
     });
     setLogoPath(c.logo ?? '');
@@ -283,7 +286,7 @@ export default function CompanyPage() {
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/*"
+                accept=".png,.jpg,.jpeg,.gif,.svg,.webp"
                 className="text-xs border border-gray-300 p-0.5"
                 onChange={e => setLogoFile(e.target.files?.[0] ?? null)}
               />

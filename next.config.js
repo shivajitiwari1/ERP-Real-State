@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  serverExternalPackages: ['sequelize', 'mysql2'],
+  serverExternalPackages: ['sequelize', 'mysql2', 'multer'],
   webpack: (config, { isServer }) => {
     if (isServer) {
       // Prevent webpack from bundling these — let Node resolve from node_modules at runtime
