@@ -77,7 +77,7 @@ export default function CompanyPage() {
     queryFn: () => axios.get('/api/master/states').then(r => r.data.data),
   });
 
-  const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } = useForm<FD>({
+  const { register, handleSubmit, reset, setValue, watch, getValues, control, formState: { errors } } = useForm<FD>({
     resolver: zodResolver(schema),
     defaultValues: { stateId: '' },
   });
@@ -164,7 +164,7 @@ export default function CompanyPage() {
   }
 
   function handleView() {
-    const vals = watch();
+    const vals = getValues();
     setViewData({ ...vals, logo: logoPath || vals.logo });
     setViewOpen(true);
   }
@@ -244,7 +244,7 @@ export default function CompanyPage() {
                     onValueChange={(val) => {
                       field.onChange(val);
                       const found = (states as any[]).find((s: any) => String(s.id) === val);
-                      if (found) setValue('stateText', found.name);
+                      setValue('stateText', found ? found.name : '');
                     }}
                   >
                     <SelectPrimitive.Trigger className="flex h-7 w-full items-center justify-between border border-gray-300 bg-white px-2 text-xs rounded-none focus:outline-none">

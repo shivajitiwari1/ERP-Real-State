@@ -25,6 +25,7 @@ const schema = z.object({
   panNo: z.string().optional(),
   vatRegNo: z.string().optional(),
   payableAt: z.string().optional(),
+  logo: z.string().optional(),
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

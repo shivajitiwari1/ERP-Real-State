@@ -4,7 +4,11 @@
       "mcp__plugin_playwright_playwright__browser_snapshot",
       "mcp__plugin_playwright_playwright__browser_fill_form",
       "mcp__plugin_playwright_playwright__browser_click",
-      "mcp__plugin_playwright_playwright__browser_evaluate"
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "PowerShell(node -e \"const fs=require\\('fs'\\),path=require\\('path'\\),os=require\\('os'\\); const f=path.join\\(os.homedir\\(\\),'AppData','Roaming','com.vercel.cli','Data','auth.json'\\); console.log\\(fs.readFileSync\\(f,'utf8'\\).substring\\(0,150\\)\\);\")",
+      "PowerShell(node -e \"const fs=require\\('fs'\\),path=require\\('path'\\),os=require\\('os'\\); const f=path.join\\(os.homedir\\(\\),'AppData','Roaming','com.vercel.cli','Data','auth.json'\\); const d=JSON.parse\\(fs.readFileSync\\(f,'utf8'\\)\\); console.log\\(d.token\\);\")",
+      "PowerShell(cd \"e:\\\\Demo Website\\\\ERP\"; $env:NODE_TLS_REJECT_UNAUTHORIZED=\"0\"; vercel link --yes 2>&1 | Select-String -NotMatch \"Warning|node:|Use\")",
+      "PowerShell(cd \"e:\\\\Demo Website\\\\ERP\"; $env:NODE_TLS_REJECT_UNAUTHORIZED=\"0\"; node set-env.mjs 2>&1 | Select-String -NotMatch \"Warning|node:|Use\")"
     ]
   }
 }
