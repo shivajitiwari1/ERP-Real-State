@@ -257,9 +257,6 @@ export default function CompanyPage() {
                     <SelectPrimitive.Portal>
                       <SelectPrimitive.Content className="z-50 bg-white border border-gray-200 shadow-lg rounded max-h-48 overflow-auto">
                         <SelectPrimitive.Viewport>
-                          <SelectPrimitive.Item value="" className="px-3 py-1.5 text-xs cursor-pointer hover:bg-orange-50 outline-none">
-                            <SelectPrimitive.ItemText>&lt;-Select-&gt;</SelectPrimitive.ItemText>
-                          </SelectPrimitive.Item>
                           {(states as any[]).map((s: any) => (
                             <SelectPrimitive.Item key={s.id} value={String(s.id)} className="px-3 py-1.5 text-xs cursor-pointer hover:bg-orange-50 outline-none">
                               <SelectPrimitive.ItemText>{s.name}</SelectPrimitive.ItemText>
