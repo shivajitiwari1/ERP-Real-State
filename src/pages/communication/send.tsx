@@ -13,7 +13,9 @@ export default function SendCommunicationPage() {
   const { data: projects = [] } = useQuery({ queryKey: ["projects"], queryFn: () => axios.get("/api/projects").then(r => r.data.data) });
   const { register, handleSubmit, reset } = useForm<any>();
   const send = useMutation({
-    mutationFn: (d: any) => axios.post("/api/communication/email-config", { action: "send", ...d, channel }),
+    mutationFn: (d: any) => channel === 'email'
+      ? axios.post('/api/communication/send-email', d)
+      : axios.post('/api/communication/send-sms', d),
     onSuccess: () => { setSent({ ok: true, msg: "Message sent successfully!" }); reset(); },
     onError: (e: any) => setSent({ ok: false, msg: e.response?.data?.message || "Failed to send" }),
   });

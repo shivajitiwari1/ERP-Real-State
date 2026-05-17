@@ -14,7 +14,7 @@ export default function EmailTestPage() {
   async function sendTest() {
     if (!to) return alert("Enter recipient email");
     setLoading(true); setResult(null);
-    try { await axios.post("/api/communication/email-config", { action: "test", to, subject, body }); setResult({ ok: true, msg: "Test email sent successfully to " + to }); }
+    try { await axios.post('/api/communication/send-email', { to, subject, body }); setResult({ ok: true, msg: "Test email sent successfully to " + to }); }
     catch (e: any) { setResult({ ok: false, msg: e.response?.data?.message || "Failed to send email" }); }
     setLoading(false);
   }
