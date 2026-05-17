@@ -348,7 +348,7 @@ export default function CompanyPage() {
                   <td className="px-3 py-1.5 text-center border border-gray-100">{i + 1}</td>
                   <td className="px-3 py-1.5 text-center border border-gray-100">{c.code}</td>
                   <td className="px-3 py-1.5 text-center border border-gray-100">{c.groupName}</td>
-                  <td className="px-3 py-1.5 border border-gray-100">{c.name}</td>
+                  <td className="px-3 py-1.5 text-center border border-gray-100">{c.name}</td>
                   <td className="px-3 py-1.5 text-center border border-gray-100">
                     <button onClick={() => onEdit(c)} className="text-blue-600 hover:text-blue-800">
                       <Pencil className="h-3.5 w-3.5" />
