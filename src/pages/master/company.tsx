@@ -176,7 +176,7 @@ export default function CompanyPage() {
     <div ref={formRef}>
       {/* Page header */}
       <div className="flex justify-between items-center mb-2">
-        <PageHeader title="Company Master" />
+        <PageHeader title="Company Master" breadcrumbs={[{ label: 'Master Company' }]} />
         <span className="text-xs text-red-500 font-medium pr-4">* Denotes mandatory field</span>
       </div>
 

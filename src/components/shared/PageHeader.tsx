@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
 
-interface Props { title: string; subtitle?: string; actions?: React.ReactNode; }
+interface Crumb { label: string; href?: string; }
+interface Props { title: string; subtitle?: string; actions?: React.ReactNode; breadcrumbs?: Crumb[]; }
 
-export default function PageHeader({ title, subtitle, actions }: Props) {
+export default function PageHeader({ title, subtitle, actions, breadcrumbs }: Props) {
   const router = useRouter();
   const parts = router.pathname.split('/').filter(Boolean);
-  const crumbs = parts.map((p, i) => ({
+  const crumbs: Crumb[] = breadcrumbs ?? parts.map((p, i) => ({
     label: p.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
     href: '/' + parts.slice(0, i + 1).join('/'),
   }));
@@ -22,7 +23,7 @@ export default function PageHeader({ title, subtitle, actions }: Props) {
         {crumbs.map((b, i) => (
           <span key={b.href} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <span style={{ fontSize: 12, color: 'var(--border)', fontWeight: 300 }}>›</span>
-            {i === crumbs.length - 1 ? (
+            {i === crumbs.length - 1 || !b.href ? (
               <span style={{ fontSize: 12, color: '#F97316', fontWeight: 600, fontFamily: "'Outfit', sans-serif" }}>{b.label}</span>
             ) : (
               <a href={b.href} style={{ fontSize: 12, color: 'var(--text-muted)', textDecoration: 'none', fontFamily: "'Outfit', sans-serif" }}
