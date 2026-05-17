@@ -52,8 +52,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'DELETE') {
       const { id } = req.body;
       if (!id) return badRequest(res, 'ID required');
-      await Company.destroy({ where: { id } });
-      return ok(res, null, 'Company deleted successfully');
+      const company = await Company.findByPk(id);
+      if (!company) return badRequest(res, 'Company not found');
+      try {
+        await Company.destroy({ where: { id } });
+        return ok(res, null, 'Company deleted successfully');
+      } catch (destroyErr: any) {
+        if (destroyErr?.original?.code === 'ER_ROW_IS_REFERENCED_2') {
+          return badRequest(res, 'Cannot delete: company has linked records (projects, etc.)');
+        }
+        throw destroyErr;
+      }
     }
     res.status(405).end();
   } catch (err) {
