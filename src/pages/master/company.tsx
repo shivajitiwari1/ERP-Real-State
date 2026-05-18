@@ -332,12 +332,12 @@ export default function CompanyPage() {
           <table className="w-full text-xs border-collapse">
             <thead>
               <tr className="bg-purple-700 text-white">
-                <th className="px-3 py-2 text-center border border-blue-800">S. NO.</th>
-                <th className="px-3 py-2 text-center border border-blue-800">CODE</th>
-                <th className="px-3 py-2 text-center border border-blue-800">GROUP NAME</th>
-                <th className="px-3 py-2 text-center border border-blue-800">COMPANY NAME</th>
-                <th className="px-3 py-2 text-center border border-blue-800">EDIT</th>
-                <th className="px-3 py-2 text-center border border-blue-800">DELETE</th>
+                <th className="px-3 py-2 text-center">S. NO.</th>
+                <th className="px-3 py-2 text-center">CODE</th>
+                <th className="px-3 py-2 text-center">GROUP NAME</th>
+                <th className="px-3 py-2 text-center">COMPANY NAME</th>
+                <th className="px-3 py-2 text-center">EDIT</th>
+                <th className="px-3 py-2 text-center">DELETE</th>
               </tr>
             </thead>
             <tbody>
@@ -345,16 +345,16 @@ export default function CompanyPage() {
                 <tr><td colSpan={6} className="text-center text-gray-400 py-8 italic">No companies added yet</td></tr>
               ) : (companies as any[]).map((c, i) => (
                 <tr key={c.id} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  <td className="px-3 py-1.5 text-center border border-gray-100">{i + 1}</td>
-                  <td className="px-3 py-1.5 text-center border border-gray-100">{c.code}</td>
-                  <td className="px-3 py-1.5 text-center border border-gray-100">{c.groupName}</td>
-                  <td className="px-3 py-1.5 text-center border border-gray-100">{c.name}</td>
-                  <td className="px-3 py-1.5 text-center border border-gray-100">
+                  <td className="px-3 py-1.5 text-center">{i + 1}</td>
+                  <td className="px-3 py-1.5 text-center">{c.code}</td>
+                  <td className="px-3 py-1.5 text-center">{c.groupName}</td>
+                  <td className="px-3 py-1.5 text-center">{c.name}</td>
+                  <td className="px-3 py-1.5 text-center">
                     <button onClick={() => onEdit(c)} className="text-blue-600 hover:text-blue-800">
                       <Pencil className="h-3.5 w-3.5" />
                     </button>
                   </td>
-                  <td className="px-3 py-1.5 text-center border border-gray-100">
+                  <td className="px-3 py-1.5 text-center">
                     <button onClick={() => onDelete(c.id)} className="text-red-500 hover:text-red-700" disabled={deleteMutation.isPending}>
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>

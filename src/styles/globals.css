@@ -239,6 +239,8 @@ table thead th {
   letter-spacing: 0.06em;
   white-space: nowrap;
   border-bottom: 2px solid #CBD5E1 !important;
+  border-right: none !important;
+  border-left: none !important;
 }
 [data-theme="dark"] table thead th {
   color: #94A3B8 !important;
