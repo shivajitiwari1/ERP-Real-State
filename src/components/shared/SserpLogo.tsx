@@ -23,7 +23,7 @@ export default function SserpLogo({
       <div style={{ width: iconSize, height: iconSize, borderRadius: '50%', overflow: 'hidden', background: '#fff', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(249,115,22,0.25)' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/api/logo"
+          src="/ss-erp-logo.png"
           alt="SS GROUP-ERP"
           width={iconSize}
           height={iconSize}
