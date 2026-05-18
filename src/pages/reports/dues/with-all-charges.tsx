@@ -22,7 +22,7 @@ export default function DueWithAllChargesPage() {
           <span className="text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded-md px-3 py-1.5">GST: 18%</span>
         </div>
         <div className="bg-white rounded border shadow-sm overflow-hidden">
-          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Due Report With All Charges ({(demands as any[]).length})</div>
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Due Report With All Charges ({(demands as any[]).length})</div>
           <table className="w-full text-xs border-collapse">
             <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">S.No.</th>

@@ -27,7 +27,7 @@ export default function ReceiptDuesHeadWisePage() {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white rounded border shadow-sm overflow-hidden">
-            <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Receipts — GST Summary</div>
+            <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Receipts — GST Summary</div>
             <div className="p-4 space-y-2 text-sm">
               <div className="flex justify-between"><span className="text-gray-600">Total Receipts</span><span className="font-bold text-green-600">₹{totalReceipts.toLocaleString('en-IN')}</span></div>
               <div className="flex justify-between"><span className="text-gray-600">GST 18%</span><span className="font-bold text-orange-600">₹{(totalReceipts * GST).toLocaleString('en-IN')}</span></div>
@@ -35,7 +35,7 @@ export default function ReceiptDuesHeadWisePage() {
             </div>
           </div>
           <div className="bg-white rounded border shadow-sm overflow-hidden">
-            <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Dues — GST Summary</div>
+            <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Dues — GST Summary</div>
             <div className="p-4 space-y-2 text-sm">
               <div className="flex justify-between"><span className="text-gray-600">Total Dues Pending</span><span className="font-bold text-red-600">₹{totalDues.toLocaleString('en-IN')}</span></div>
               <div className="flex justify-between"><span className="text-gray-600">GST 18%</span><span className="font-bold text-orange-600">₹{(totalDues * GST).toLocaleString('en-IN')}</span></div>

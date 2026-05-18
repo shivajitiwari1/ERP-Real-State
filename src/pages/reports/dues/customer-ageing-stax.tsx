@@ -42,7 +42,7 @@ export default function CustomerAgeingStaxPage() {
           <span className="text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded-md px-3 py-1.5">GST Rate: 18%</span>
         </div>
         <div className="bg-white rounded border shadow-sm overflow-hidden">
-          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Customer Wise Ageing With STax ({rows.length})</div>
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Customer Wise Ageing With STax ({rows.length})</div>
           <table className="w-full text-xs border-collapse">
             <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">S.No.</th>

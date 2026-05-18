@@ -19,7 +19,7 @@ export default function BrokerWiseHoldPage() {
       <PageHeader title="Broker Wise Hold" />
       <div className="space-y-4">
         <div className="bg-white rounded border shadow-sm overflow-hidden">
-          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Broker Wise Hold ({rows.length} brokers)</div>
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Broker Wise Hold ({rows.length} brokers)</div>
           {isLoading ? <div className="p-8 text-center text-gray-400 text-sm">Loading...</div> :
           rows.length === 0 ? <div className="p-8 text-center text-gray-400 text-sm">No held units found</div> :
           rows.map((r, gi) => (

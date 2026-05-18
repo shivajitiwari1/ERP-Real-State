@@ -21,7 +21,7 @@ export default function StageWiseDetailsPage() {
           </select>
         </div>
         <div className="bg-white rounded border shadow-sm overflow-hidden">
-          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Stage Wise Details ({pending.length})</div>
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Stage Wise Details ({pending.length})</div>
           <table className="w-full text-xs border-collapse">
             <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">S.No.</th>

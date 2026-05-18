@@ -19,7 +19,7 @@ export default function BrokerHierarchyPage() {
       <PageHeader title="Broker Hierarchy" />
       <div className="space-y-4">
         <div className="bg-white rounded border shadow-sm overflow-hidden">
-          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Broker Hierarchy ({parentBrokers.length} parent brokers)</div>
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Broker Hierarchy ({parentBrokers.length} parent brokers)</div>
           <table className="w-full text-xs border-collapse">
             <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">S.No.</th>

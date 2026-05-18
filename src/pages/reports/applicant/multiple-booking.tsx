@@ -30,7 +30,7 @@ export default function MultipleBookingPage() {
           {rows.length > 0 && <p className="mt-2 text-xs text-orange-600">{rows.length} booking(s) from customers with multiple units.</p>}
         </div>
         <div className="bg-white rounded border shadow-sm overflow-hidden">
-          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Multiple Booking ({rows.length})</div>
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Multiple Booking ({rows.length})</div>
           <table className="w-full text-xs border-collapse">
             <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">S.No.</th>

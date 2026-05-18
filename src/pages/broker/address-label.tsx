@@ -10,7 +10,7 @@ export default function BrokerAddressLabelPage() {
       <PageHeader title="Broker Address Label" />
       <div className="space-y-4">
         <div className="bg-white rounded border shadow-sm overflow-hidden">
-          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Broker Address Labels ({(brokers as any[]).length})</div>
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase tracking-wide">Broker Address Labels ({(brokers as any[]).length})</div>
           <table className="w-full text-xs border-collapse">
             <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">S.No.</th>
