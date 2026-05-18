@@ -28,10 +28,10 @@ export default function PrintDemandManuallyPage() {
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by Reg. No. or Customer..." className="border rounded px-2 h-9 text-sm min-w-48 flex-1" />
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Print Demand Manually ({filtered.length} bookings)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Print Demand Manually ({filtered.length} bookings)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Unit</th><th className="px-3 py-2">Project</th><th className="px-3 py-2">Action</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Unit</th><th className="px-3 py-2">Project</th><th className="px-3 py-2">Action</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={6} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 filtered.length === 0 ? <tr><td colSpan={6} className="text-center py-6 text-gray-400 italic">No bookings found</td></tr> :

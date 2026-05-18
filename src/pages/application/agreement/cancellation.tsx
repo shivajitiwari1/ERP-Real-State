@@ -33,7 +33,7 @@ export default function AgreementCancellationPage() {
           <span className="text-xs text-gray-400 self-center">{filtered.length} active agreements</span>
         </div>
         <table className="w-full text-xs border-collapse">
-          <thead><tr className="bg-slate-700 text-white">{['#','Customer','Booking','Agreement Type','Date','Status','Action'].map(h=><th key={h} className="px-3 py-2 text-left">{h}</th>)}</tr></thead>
+          <thead><tr className="bg-purple-700 text-white">{['#','Customer','Booking','Agreement Type','Date','Status','Action'].map(h=><th key={h} className="px-3 py-2 text-left">{h}</th>)}</tr></thead>
           <tbody>{isLoading ? <tr><td colSpan={7} className="text-center py-8 text-gray-400">Loading...</td></tr> : filtered.length === 0 ? <tr><td colSpan={7} className="text-center py-8 text-gray-400 italic">No active agreements found</td></tr> : filtered.map((a: any, i) => (
             <tr key={a.id} className={i%2===0?'bg-white':'bg-gray-50'}>
               <td className="px-3 py-2 text-gray-400">{i+1}</td>

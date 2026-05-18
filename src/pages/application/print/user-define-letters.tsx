@@ -24,10 +24,10 @@ export default function UserDefineLettersPage() {
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search letter templates..." className="border rounded px-2 h-9 text-sm min-w-64 flex-1" />
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">User Define Letters ({filtered.length} templates)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">User Define Letters ({filtered.length} templates)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Letter Name</th><th className="px-3 py-2">Type</th><th className="px-3 py-2">Created Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Letter Name</th><th className="px-3 py-2">Type</th><th className="px-3 py-2">Created Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={6} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 filtered.length === 0 ? (

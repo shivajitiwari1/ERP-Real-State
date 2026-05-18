@@ -26,7 +26,7 @@ export default function BrokerWiseHoldPage() {
             <div key={gi} className="border-b last:border-b-0">
               <div className="bg-gray-50 px-3 py-2 text-xs font-semibold text-purple-700">{r.brokerName} — {r.units.length} unit(s) held</div>
               <table className="w-full text-xs border-collapse">
-                <thead><tr className="bg-gray-100">
+                <thead><tr className="bg-slate-800 text-white">
                   <th className="px-3 py-1.5 text-left">Unit No.</th>
                   <th className="px-3 py-1.5 text-left">Tower</th>
                   <th className="px-3 py-1.5 text-left">Type</th>

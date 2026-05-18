@@ -42,7 +42,7 @@ export default function PenaltyReceiptPage() {
             </div>
             {selectedProject && (
               <div className="overflow-auto max-h-36 border rounded">
-                <table className="w-full text-xs"><thead><tr className="bg-slate-700 text-white sticky top-0"><th className="px-2 py-1.5 text-left">Reg. No.</th><th className="px-2 py-1.5 text-left">Customer</th><th className="px-2 py-1.5">Select</th></tr></thead>
+                <table className="w-full text-xs"><thead><tr className="bg-purple-700 text-white sticky top-0"><th className="px-2 py-1.5 text-left">Reg. No.</th><th className="px-2 py-1.5 text-left">Customer</th><th className="px-2 py-1.5">Select</th></tr></thead>
                   <tbody>{filteredBookings.map((b: any, i) => <tr key={b.id} className={selectedBooking?.id === b.id ? "bg-orange-50" : i % 2 === 0 ? "bg-white" : "bg-gray-50"}><td className="px-2 py-1 font-medium">{b.registrationNo}</td><td className="px-2 py-1">{b.Applicants?.[0]?.firstName} {b.Applicants?.[0]?.lastName}</td><td className="px-2 py-1 text-center"><Button size="sm" variant={selectedBooking?.id === b.id ? "default" : "outline"} className="h-5 text-xs px-2" onClick={() => setSelectedBooking(b)}>Select</Button></td></tr>)}</tbody>
                 </table>
               </div>

@@ -325,13 +325,13 @@ export default function CompanyPage() {
 
       {/* Company Details table */}
       <div className="bg-white border shadow-sm">
-        <div className="bg-slate-700 px-3 py-1.5">
+        <div className="bg-purple-700 px-3 py-1.5">
           <h3 className="text-white text-xs font-bold uppercase tracking-wide">Company Details</h3>
         </div>
         <div className="overflow-auto">
           <table className="w-full text-xs border-collapse">
             <thead>
-              <tr className="bg-blue-900 text-white">
+              <tr className="bg-purple-700 text-white">
                 <th className="px-3 py-2 text-center border border-blue-800">S. NO.</th>
                 <th className="px-3 py-2 text-center border border-blue-800">CODE</th>
                 <th className="px-3 py-2 text-center border border-blue-800">GROUP NAME</th>
@@ -376,7 +376,7 @@ export default function CompanyPage() {
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 bg-black/40 z-40" />
           <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-white border shadow-xl w-[640px] max-h-[80vh] overflow-auto p-0">
-            <div className="bg-slate-700 px-4 py-2 flex justify-between items-center">
+            <div className="bg-purple-700 px-4 py-2 flex justify-between items-center">
               <Dialog.Title className="text-white text-sm font-bold">Company Details</Dialog.Title>
               <Dialog.Close className="text-white hover:text-gray-300"><X className="h-4 w-4" /></Dialog.Close>
             </div>

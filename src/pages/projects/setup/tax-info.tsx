@@ -105,7 +105,7 @@ export default function TaxInfoPage() {
               </div>
               <table className="w-full text-xs border-collapse">
                 <thead>
-                  <tr className="bg-slate-700 text-white">
+                  <tr className="bg-purple-700 text-white">
                     <th className="px-3 py-2 text-left">State</th>
                     <th className="px-3 py-2 text-center">Stamp Duty</th>
                     <th className="px-3 py-2 text-center">Reg. Fee</th>

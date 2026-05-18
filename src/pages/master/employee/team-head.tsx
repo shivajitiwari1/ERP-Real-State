@@ -53,7 +53,7 @@ export default function TeamHeadPage() {
           </form>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Team Head Assignments</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Team Head Assignments</div>
           <table className="w-full text-xs">
             <thead><tr className="bg-slate-100"><th className="px-3 py-2 text-left">Department</th><th className="px-3 py-2 text-left">Team Head</th></tr></thead>
             <tbody>{saved.length === 0 ? <tr><td colSpan={2} className="text-center py-6 text-gray-400 italic">No assignments yet</td></tr> : saved.map((s, i) => <tr key={i} className="border-t"><td className="px-3 py-2">{deptMap[s.departmentId] || s.departmentId}</td><td className="px-3 py-2">{empMap[s.employeeId] || s.employeeId}</td></tr>)}</tbody>

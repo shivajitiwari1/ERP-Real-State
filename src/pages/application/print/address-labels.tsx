@@ -22,15 +22,15 @@ export default function AddressLabelsPage() {
             <button onClick={() => setView('table')} className={`px-3 py-1.5 ${view === 'table' ? 'bg-blue-700 text-white' : 'bg-white text-gray-600'}`}>Table</button>
             <button onClick={() => setView('labels')} className={`px-3 py-1.5 ${view === 'labels' ? 'bg-blue-700 text-white' : 'bg-white text-gray-600'}`}>Labels</button>
           </div>
-          <button onClick={() => window.print()} className="px-3 py-1.5 bg-slate-700 text-white rounded text-xs hover:bg-slate-800">Print All Labels</button>
+          <button onClick={() => window.print()} className="px-3 py-1.5 bg-purple-700 text-white rounded text-xs hover:bg-slate-800">Print All Labels</button>
         </div>
 
         {view === 'table' ? (
           <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-            <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Address Labels ({(bookings as any[]).length} customers)</div>
+            <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Address Labels ({(bookings as any[]).length} customers)</div>
             <div className="overflow-auto">
               <table className="w-full text-xs">
-                <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Address</th><th className="px-3 py-2">City</th><th className="px-3 py-2">Pin</th><th className="px-3 py-2">Action</th></tr></thead>
+                <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Address</th><th className="px-3 py-2">City</th><th className="px-3 py-2">Pin</th><th className="px-3 py-2">Action</th></tr></thead>
                 <tbody>
                   {isLoading ? <tr><td colSpan={7} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                   (bookings as any[]).length === 0 ? <tr><td colSpan={7} className="text-center py-6 text-gray-400 italic">No bookings found</td></tr> :

@@ -26,7 +26,7 @@ export default function DispatchReportPage() {
           </select>
           <label className="text-xs text-gray-600 flex items-center gap-1">From: <input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} className="border rounded px-2 h-9 text-sm" /></label>
           <label className="text-xs text-gray-600 flex items-center gap-1">To: <input type="date" value={toDate} onChange={e => setToDate(e.target.value)} className="border rounded px-2 h-9 text-sm" /></label>
-          <button onClick={() => window.print()} className="px-3 py-1.5 bg-slate-700 text-white rounded text-xs hover:bg-slate-800">Print Report</button>
+          <button onClick={() => window.print()} className="px-3 py-1.5 bg-purple-700 text-white rounded text-xs hover:bg-slate-800">Print Report</button>
         </div>
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center"><div className="text-2xl font-bold text-blue-700">{dispatched}</div><div className="text-xs text-blue-600">Total Dispatched</div></div>
@@ -34,10 +34,10 @@ export default function DispatchReportPage() {
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-center"><div className="text-2xl font-bold text-yellow-700">{pending}</div><div className="text-xs text-yellow-600">In Transit</div></div>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Dispatch Report ({rows.length} entries)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Dispatch Report ({rows.length} entries)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document</th><th className="px-3 py-2">Dispatch Date</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Delivery Status</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document</th><th className="px-3 py-2">Dispatch Date</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Delivery Status</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={7} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 rows.length === 0 ? <tr><td colSpan={7} className="text-center py-6 text-gray-400 italic">No dispatch records</td></tr> :

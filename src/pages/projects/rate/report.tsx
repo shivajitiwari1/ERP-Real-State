@@ -40,7 +40,7 @@ export default function RateReportPage() {
             <span className="text-xs font-bold uppercase text-slate-300">Rate History ({(rates as any[]).length})</span>
           </div>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{['#','Rate/Sq.ft','Unit Type','Effective Date','Added On'].map(h=><th key={h} className="px-3 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{['#','Rate/Sq.ft','Unit Type','Effective Date','Added On'].map(h=><th key={h} className="px-3 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{isLoading ? <tr><td colSpan={5} className="text-center py-8 text-gray-400">Loading...</td></tr> : (rates as any[]).map((r: any, i) => (
               <tr key={r.id} className={i===0?'bg-orange-50 font-semibold':(i%2===0?'bg-white':'bg-gray-50')}>
                 <td className="px-3 py-2 text-gray-400">{i+1}</td>

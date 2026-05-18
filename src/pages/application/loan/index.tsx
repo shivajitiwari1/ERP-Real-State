@@ -45,7 +45,7 @@ export default function LoanProcessPage() {
             {selectedProject && (
               <div className="overflow-auto max-h-36 border rounded">
                 <table className="w-full text-xs">
-                  <thead><tr className="bg-slate-700 text-white sticky top-0">
+                  <thead><tr className="bg-purple-700 text-white sticky top-0">
                     <th className="px-2 py-1.5 text-left">Reg. No.</th>
                     <th className="px-2 py-1.5 text-left">Customer</th>
                     <th className="px-2 py-1.5 text-left">Select</th>

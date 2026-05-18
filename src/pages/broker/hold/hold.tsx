@@ -54,7 +54,7 @@ export default function BrokerHoldUnitPage() {
         <div className="bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Currently Held ({(heldUnits as any[]).length})</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{["Unit","Broker","Hold Date"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{["Unit","Broker","Hold Date"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{(heldUnits as any[]).map((h: any, i) => <tr key={h.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}><td className="px-2 py-2 font-medium">{h.Unit?.unitNo || h.unitId}</td><td className="px-2 py-2">{h.Broker?.firstName} {h.Broker?.lastName}</td><td className="px-2 py-2">{h.holdDate ? new Date(h.holdDate).toLocaleDateString("en-IN") : "-"}</td></tr>)}</tbody>
           </table>
         </div>

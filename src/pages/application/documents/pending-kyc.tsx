@@ -38,10 +38,10 @@ export default function PendingKycPage() {
           <span className="text-xs text-orange-600 font-medium">{withKycStatus.length} bookings with incomplete KYC</span>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Pending KYC in Booking Form ({withKycStatus.length})</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Pending KYC in Booking Form ({withKycStatus.length})</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Unit</th><th className="px-3 py-2">Mobile</th><th className="px-3 py-2">Missing KYC Fields</th><th className="px-3 py-2">Count</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Unit</th><th className="px-3 py-2">Mobile</th><th className="px-3 py-2">Missing KYC Fields</th><th className="px-3 py-2">Count</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={7} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 withKycStatus.length === 0 ? (

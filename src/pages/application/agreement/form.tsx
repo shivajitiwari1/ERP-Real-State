@@ -67,7 +67,7 @@ export default function AgreementFormPage() {
         <div className="bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Agreements</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{['#','Reg. No.','Customer','Unit','Type','Date','Status'].map(h=><th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{['#','Reg. No.','Customer','Unit','Type','Date','Status'].map(h=><th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{(agreements as any[]).map((a: any, i) => (
               <tr key={a.id} className={i%2===0?'bg-white':'bg-gray-50'}>
                 <td className="px-2 py-2 text-gray-400">{i+1}</td>

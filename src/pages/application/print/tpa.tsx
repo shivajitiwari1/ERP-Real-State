@@ -23,10 +23,10 @@ export default function TpaPage() {
           <div className="text-xs text-gray-500 self-center">Third Party Agreement documents</div>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">TPA ({tpaBookings.length} agreements)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">TPA ({tpaBookings.length} agreements)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Unit</th><th className="px-3 py-2">Transfer Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Unit</th><th className="px-3 py-2">Transfer Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={7} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 tpaBookings.length === 0 ? (

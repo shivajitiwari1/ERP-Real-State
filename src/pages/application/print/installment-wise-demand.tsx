@@ -36,10 +36,10 @@ export default function InstallmentWiseDemandPage() {
         groups.length === 0 ? <div className="bg-white border rounded-lg p-8 text-center text-gray-400 italic">No demands found</div> :
         groups.map((g: any) => (
           <div key={g.label} className="bg-white border rounded-lg shadow-sm overflow-hidden">
-            <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Installment: {g.label} ({g.items.length} demands)</div>
+            <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Installment: {g.label} ({g.items.length} demands)</div>
             <div className="overflow-auto">
               <table className="w-full text-xs">
-                <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Amount (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
+                <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Amount (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
                 <tbody>
                   {g.items.map((d: any, i: number) => (
                     <tr key={d.id} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>

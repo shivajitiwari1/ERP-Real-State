@@ -90,7 +90,7 @@ export default function CreateProjectPage() {
         <div className="xl:col-span-3 bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Projects ({(projects as any[]).length})</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">
+            <thead><tr className="bg-purple-700 text-white">
               {['#', 'Code', 'Project Name', 'Company', 'City', 'Possession Date', 'Status', 'Action'].map(h => (
                 <th key={h} className="px-2 py-2 text-left">{h}</th>
               ))}

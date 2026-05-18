@@ -34,7 +34,7 @@ export default function CustomerWiseStageDuesPage() {
         <div className="bg-white rounded border shadow-sm overflow-hidden">
           <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Customer Wise Stage Dues ({rows.length})</div>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-gray-100">
+            <thead><tr className="bg-slate-800 text-white">
               <th className="px-3 py-2 text-left">S.No.</th>
               <th className="px-3 py-2 text-left">Reg. No.</th>
               <th className="px-3 py-2 text-left">Customer</th>

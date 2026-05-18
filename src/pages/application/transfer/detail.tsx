@@ -31,7 +31,7 @@ export default function TransferDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Transfer list */}
             <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-              <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">
+              <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">
                 Transfers ({(transfers as any[]).length})
               </div>
               {isLoading ? (
@@ -61,7 +61,7 @@ export default function TransferDetailPage() {
             <div className="lg:col-span-2 bg-white border rounded-lg shadow-sm">
               {selectedTransfer ? (
                 <>
-                  <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Transfer Detail</div>
+                  <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Transfer Detail</div>
                   <div className="p-4 grid grid-cols-2 gap-4 text-xs">
                     {[
                       { label: 'Transfer ID', value: `#${selectedTransfer.id}` },

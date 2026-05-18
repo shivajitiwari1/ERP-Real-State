@@ -23,7 +23,7 @@ export default function UnraiseDemandPage() {
         </div>
         <div className="bg-white rounded border shadow-sm overflow-auto">
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{["#","Customer","Reg. No.","Demand Date","Type","Amount","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{["#","Customer","Reg. No.","Demand Date","Type","Amount","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{isLoading ? <tr><td colSpan={7} className="text-center py-8 text-gray-400">Loading...</td></tr> : filtered.length === 0 ? <tr><td colSpan={7} className="text-center py-8 text-gray-400 italic">No pending demands{selectedProject ? "" : " — select a project"}</td></tr> : filtered.map((d: any, i) => (
               <tr key={d.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                 <td className="px-2 py-2 text-gray-400">{i + 1}</td>

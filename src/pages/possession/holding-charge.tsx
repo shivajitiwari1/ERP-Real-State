@@ -41,7 +41,7 @@ export default function HoldingChargePage() {
         <div className="bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Holding Charges ({(charges as any[]).length})</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{["#","Project","Rs./Day","Effective From","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{["#","Project","Rs./Day","Effective From","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{(charges as any[]).map((c: any, i) => <tr key={c.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}><td className="px-2 py-2 text-gray-400">{i + 1}</td><td className="px-2 py-2 font-medium">{c.projectId}</td><td className="px-2 py-2">Rs.{Number(c.chargePerDay).toLocaleString("en-IN")}</td><td className="px-2 py-2">{c.effectiveFrom}</td><td className="px-2 py-2"><Button size="sm" variant="outline" className="h-6 text-xs px-2" onClick={() => { Object.keys(c).forEach(k => setValue(k as any, c[k])); }}>Edit</Button></td></tr>)}</tbody>
           </table>
         </div>

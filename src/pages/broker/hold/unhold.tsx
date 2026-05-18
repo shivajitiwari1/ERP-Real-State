@@ -26,7 +26,7 @@ export default function BrokerUnholdUnitPage() {
         </div>
         <div className="bg-white rounded border shadow-sm overflow-auto">
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{["#","Unit","Broker","Hold Date","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{["#","Unit","Broker","Hold Date","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{isLoading ? <tr><td colSpan={5} className="text-center py-8 text-gray-400">Loading...</td></tr> : (heldUnits as any[]).length === 0 ? <tr><td colSpan={5} className="text-center py-8 text-gray-400 italic">No held units{selectedProject ? "" : " — select a project"}</td></tr> : (heldUnits as any[]).map((h: any, i) => (
               <tr key={h.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                 <td className="px-2 py-2 text-gray-400">{i + 1}</td>

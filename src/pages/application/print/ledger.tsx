@@ -25,7 +25,7 @@ export default function PrintLedgerPage() {
           </div>
           <div className="bg-white rounded border shadow-sm overflow-auto max-h-80">
             <table className="w-full text-xs border-collapse">
-              <thead><tr className="bg-slate-700 text-white sticky top-0">{["Customer","Reg. No.","Unit","Select"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+              <thead><tr className="bg-purple-700 text-white sticky top-0">{["Customer","Reg. No.","Unit","Select"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
               <tbody>{isLoading ? <tr><td colSpan={4} className="text-center py-8 text-gray-400">Loading...</td></tr> : filtered.slice(0, 30).map((b: any, i) => (
                 <tr key={b.id} className={selected?.id === b.id ? "bg-orange-50" : i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                   <td className="px-2 py-1.5 font-medium">{b.Applicants?.[0]?.firstName} {b.Applicants?.[0]?.lastName}</td>
@@ -47,7 +47,7 @@ export default function PrintLedgerPage() {
               <div ref={printRef} className="p-4 text-xs space-y-3">
                 <div className="text-center border-b pb-2"><h2 className="font-bold text-base">CUSTOMER ACCOUNT LEDGER</h2><p className="text-gray-500">As of {new Date().toLocaleDateString("en-IN")}</p></div>
                 <div className="grid grid-cols-2 gap-2 text-xs border-b pb-2"><div><strong>Name:</strong> {detail.Applicants?.[0]?.firstName} {detail.Applicants?.[0]?.lastName}</div><div><strong>Reg. No.:</strong> {detail.registrationNo}</div><div><strong>Project:</strong> {detail.Project?.name}</div><div><strong>Unit:</strong> {detail.Unit?.unitNo || "-"}</div></div>
-                <table className="w-full border-collapse border text-xs"><thead><tr className="bg-gray-100"><th className="border px-2 py-1 text-left">Date</th><th className="border px-2 py-1 text-left">Description</th><th className="border px-2 py-1 text-right">Debit</th><th className="border px-2 py-1 text-right">Credit</th></tr></thead>
+                <table className="w-full border-collapse border text-xs"><thead><tr className="bg-slate-800 text-white"><th className="border px-2 py-1 text-left">Date</th><th className="border px-2 py-1 text-left">Description</th><th className="border px-2 py-1 text-right">Debit</th><th className="border px-2 py-1 text-right">Credit</th></tr></thead>
                   <tbody>
                     {(detail.Demands || []).map((d: any) => <tr key={"d" + d.id}><td className="border px-2 py-1">{d.demandDate}</td><td className="border px-2 py-1">Demand ({d.demandType})</td><td className="border px-2 py-1 text-right">Rs.{Number(d.totalAmount).toLocaleString("en-IN")}</td><td className="border px-2 py-1 text-right">-</td></tr>)}
                     {(detail.Receipts || []).map((r: any) => <tr key={"r" + r.id}><td className="border px-2 py-1">{r.receiptDate}</td><td className="border px-2 py-1">Receipt ({r.receiptNo})</td><td className="border px-2 py-1 text-right">-</td><td className="border px-2 py-1 text-right">Rs.{Number(r.totalAmount).toLocaleString("en-IN")}</td></tr>)}

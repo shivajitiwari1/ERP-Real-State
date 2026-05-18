@@ -25,10 +25,10 @@ export default function EmailNotificationPage() {
           <span className="text-xs text-gray-500">{sent.size} email(s) sent this session</span>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Email Notification ({pending.length} pending demands)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Email Notification ({pending.length} pending demands)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer</th><th className="px-3 py-2">Amount (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Email</th><th className="px-3 py-2">Action</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer</th><th className="px-3 py-2">Amount (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Email</th><th className="px-3 py-2">Action</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={8} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 pending.length === 0 ? <tr><td colSpan={8} className="text-center py-6 text-gray-400 italic">No pending demands</td></tr> :

@@ -88,7 +88,7 @@ export default function EmployeeInfoPage() {
         <div className="bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Employees ({(employees as any[]).length})</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">
+            <thead><tr className="bg-purple-700 text-white">
               {['#','Code','Name','Department','Mobile','Status','Action'].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}
             </tr></thead>
             <tbody>{(employees as any[]).map((e: any, i) => (

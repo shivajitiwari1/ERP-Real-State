@@ -33,7 +33,7 @@ export default function BrokerTdsMasterPage() {
         <div className="bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">TDS-Applicable Brokers ({tdsApplicable.length})</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{["Code","Name","PAN","TAN"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{["Code","Name","PAN","TAN"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{tdsApplicable.length === 0 ? <tr><td colSpan={4} className="px-2 py-4 text-center text-gray-400 italic">No TDS-applicable brokers configured</td></tr> : tdsApplicable.map((b: any, i) => <tr key={b.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}><td className="px-2 py-2 font-mono">{b.code}</td><td className="px-2 py-2">{b.firstName} {b.lastName}</td><td className="px-2 py-2 font-mono">{b.panNo || "-"}</td><td className="px-2 py-2 font-mono">{b.tanNo || "-"}</td></tr>)}</tbody>
           </table>
         </div>

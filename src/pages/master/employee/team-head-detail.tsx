@@ -26,7 +26,7 @@ export default function TeamHeadDetailPage() {
             const mgr = empMap[managerId];
             return (
               <div key={managerId} className="bg-white border rounded-lg shadow-sm overflow-hidden">
-                <div className="bg-slate-700 px-4 py-2 flex items-center gap-2">
+                <div className="bg-purple-700 px-4 py-2 flex items-center gap-2">
                   <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs font-bold">{mgr?.firstName?.[0]}{mgr?.lastName?.[0]}</div>
                   <div className="text-white text-sm font-semibold">{mgr ? `${mgr.firstName} ${mgr.lastName}` : `Manager #${managerId}`}</div>
                   <span className="text-orange-300 text-xs">{mgr?.designation || ''}</span>

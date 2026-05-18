@@ -53,7 +53,7 @@ export default function ChequePage() {
           <span className="text-xs text-gray-500 self-center">{(cheques as any[]).length} cheques</span>
         </div>
         <table className="w-full text-xs border-collapse">
-          <thead><tr className="bg-slate-700 text-white">{['#','Cheque No.','Date','Bank','Customer','Amount','Status','Actions'].map(h=><th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+          <thead><tr className="bg-purple-700 text-white">{['#','Cheque No.','Date','Bank','Customer','Amount','Status','Actions'].map(h=><th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
           <tbody>{isLoading ? <tr><td colSpan={8} className="text-center py-8 text-gray-400">Loading...</td></tr> : (cheques as any[]).map((c: any, i) => (
             <tr key={c.id} className={i%2===0?'bg-white':'bg-gray-50'}>
               <td className="px-2 py-2 text-gray-400">{i+1}</td>

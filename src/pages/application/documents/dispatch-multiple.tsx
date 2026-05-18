@@ -29,11 +29,11 @@ export default function DispatchMultiplePage() {
           )}
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Customer Document Dispatch Multiple ({active.length} bookings)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Customer Document Dispatch Multiple ({active.length} bookings)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="bg-blue-900 text-white">
+                <tr className="bg-purple-700 text-white">
                   <th className="px-3 py-2"><input type="checkbox" checked={selected.size === active.length && active.length > 0} onChange={toggleAll} /></th>
                   <th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Unit</th><th className="px-3 py-2">Project</th><th className="px-3 py-2">Status</th>
                 </tr>

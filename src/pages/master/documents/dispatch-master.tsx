@@ -30,7 +30,7 @@ export default function DispatchMasterPage() {
         <div className="bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Dispatch Configs ({dispatches.length})</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{["Document","Mode","Recipient","TAT","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{["Document","Mode","Recipient","TAT","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{dispatches.map((d, i) => <tr key={d.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}><td className="px-2 py-2 font-medium">{d.docType}</td><td className="px-2 py-2">{d.mode}</td><td className="px-2 py-2">{d.recipient}</td><td className="px-2 py-2">{d.days}d</td><td className="px-2 py-2"><Button size="sm" variant="destructive" className="h-5 text-xs px-1.5" onClick={() => setDispatches(dispatches.filter(x => x.id !== d.id))}>Del</Button></td></tr>)}</tbody>
           </table>
         </div>

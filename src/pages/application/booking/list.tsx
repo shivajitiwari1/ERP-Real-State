@@ -43,7 +43,7 @@ export default function BookingListPage() {
         {isLoading && <p className="text-sm text-gray-400">Loading...</p>}
         <div className="overflow-auto">
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">
+            <thead><tr className="bg-purple-700 text-white">
               {['#', 'Reg. No.', 'Customer Name', 'Unit', 'Booking Date', 'Plan', 'Basic Price', 'Status', 'Action'].map(h => (
                 <th key={h} className="px-2 py-2 text-left">{h}</th>
               ))}

@@ -26,7 +26,7 @@ export default function RoleCategoryPage() {
           <div className="space-y-4">
             {Object.entries(byCategory).map(([category, pages]) => (
               <div key={category} className="bg-white border rounded-lg shadow-sm overflow-hidden">
-                <div className="bg-slate-700 px-4 py-2 flex items-center justify-between">
+                <div className="bg-purple-700 px-4 py-2 flex items-center justify-between">
                   <span className="text-white text-xs font-bold uppercase tracking-wide">{category}</span>
                   <span className="text-slate-300 text-xs">{pages.length} page{pages.length !== 1 ? 's' : ''}</span>
                 </div>

@@ -24,7 +24,7 @@ export default function PrintDemandPage() {
           </div>
           <div className="bg-white rounded border shadow-sm overflow-auto max-h-96">
             <table className="w-full text-xs border-collapse">
-              <thead><tr className="bg-slate-700 text-white sticky top-0">{["Customer","Reg. No.","Due Date","Amount","Select"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+              <thead><tr className="bg-purple-700 text-white sticky top-0">{["Customer","Reg. No.","Due Date","Amount","Select"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
               <tbody>{isLoading ? <tr><td colSpan={5} className="text-center py-8 text-gray-400">Loading...</td></tr> : filtered.slice(0, 30).map((d: any, i) => (
                 <tr key={d.id} className={selected?.id === d.id ? "bg-orange-50" : i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                   <td className="px-2 py-1.5 font-medium">{d.Booking?.Applicants?.[0]?.firstName} {d.Booking?.Applicants?.[0]?.lastName}</td>

@@ -46,7 +46,7 @@ export default function BrokerProjectMappingPage() {
         <div className="bg-white p-4 rounded border shadow-sm overflow-auto">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">Mappings ({(mappings as any[]).length})</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{["Broker","Project","Commission","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{["Broker","Project","Commission","Action"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{(mappings as any[]).map((m: any, i) => (
               <tr key={m.id} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                 <td className="px-2 py-2 font-medium">{m.Broker?.firstName} {m.Broker?.lastName}</td>

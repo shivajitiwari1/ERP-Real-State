@@ -29,13 +29,13 @@ export default function DispatchRegisterPage() {
           </select>
           <label className="text-xs text-gray-600 flex items-center gap-1">From: <input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} className="border rounded px-2 h-9 text-sm" /></label>
           <label className="text-xs text-gray-600 flex items-center gap-1">To: <input type="date" value={toDate} onChange={e => setToDate(e.target.value)} className="border rounded px-2 h-9 text-sm" /></label>
-          <button onClick={() => window.print()} className="px-3 py-1.5 bg-slate-700 text-white rounded text-xs hover:bg-slate-800">Print Register</button>
+          <button onClick={() => window.print()} className="px-3 py-1.5 bg-purple-700 text-white rounded text-xs hover:bg-slate-800">Print Register</button>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Document Dispatch Register ({rows.length} entries)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Document Dispatch Register ({rows.length} entries)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document</th><th className="px-3 py-2">Dispatch Date</th><th className="px-3 py-2">Mode</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Status</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document</th><th className="px-3 py-2">Dispatch Date</th><th className="px-3 py-2">Mode</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Status</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={8} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 rows.length === 0 ? <tr><td colSpan={8} className="text-center py-6 text-gray-400 italic">No dispatch records found</td></tr> :

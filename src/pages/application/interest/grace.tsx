@@ -29,7 +29,7 @@ export default function GracePeriodPage() {
             <span className="text-xs font-bold uppercase text-slate-300">Overdue Demands</span>
           </div>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-700 text-white">{['#','Customer','Reg. No.','Due Date','Days Overdue','Amount','Grace Action'].map(h=><th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-purple-700 text-white">{['#','Customer','Reg. No.','Due Date','Days Overdue','Amount','Grace Action'].map(h=><th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
             <tbody>{isLoading ? <tr><td colSpan={7} className="text-center py-8 text-gray-400">Loading...</td></tr> : filtered.length === 0 ? <tr><td colSpan={7} className="text-center py-8 text-gray-400 italic">No overdue demands{selectedProject ? '' : ' — select a project first'}</td></tr> : filtered.map((d: any, i) => {
               const days = getDaysOverdue(d.dueDate);
               return (

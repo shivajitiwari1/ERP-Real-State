@@ -33,7 +33,7 @@ export default function FinalStatementPage() {
           </div>
           <div className="bg-white rounded border shadow-sm overflow-auto max-h-80">
             <table className="w-full text-xs border-collapse">
-              <thead><tr className="bg-slate-700 text-white sticky top-0">{["Customer","Reg. No.","Unit","Select"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
+              <thead><tr className="bg-purple-700 text-white sticky top-0">{["Customer","Reg. No.","Unit","Select"].map(h => <th key={h} className="px-2 py-2 text-left">{h}</th>)}</tr></thead>
               <tbody>{filtered.slice(0, 30).map((b: any, i) => <tr key={b.id} className={selected?.id === b.id ? "bg-orange-50" : i % 2 === 0 ? "bg-white" : "bg-gray-50"}><td className="px-2 py-1.5 font-medium">{b.Applicants?.[0]?.firstName} {b.Applicants?.[0]?.lastName}</td><td className="px-2 py-1.5">{b.registrationNo}</td><td className="px-2 py-1.5">{b.Unit?.unitNo || "-"}</td><td className="px-2 py-1.5"><Button size="sm" variant={selected?.id === b.id ? "default" : "outline"} className="h-5 text-xs px-2" onClick={() => setSelected(b)}>Select</Button></td></tr>)}</tbody>
             </table>
           </div>

@@ -24,7 +24,7 @@ export default function DocumentTypePage() {
       <PageHeader title="Document Type" subtitle="Document types tracked in the system" />
       <div className="bg-white rounded border shadow-sm overflow-auto">
         <table className="w-full text-xs border-collapse">
-          <thead><tr className="bg-slate-700 text-white">{["#","Document Name","Category","Required"].map(h => <th key={h} className="px-3 py-2 text-left">{h}</th>)}</tr></thead>
+          <thead><tr className="bg-purple-700 text-white">{["#","Document Name","Category","Required"].map(h => <th key={h} className="px-3 py-2 text-left">{h}</th>)}</tr></thead>
           <tbody>{DOC_TYPES.map((d, i) => (
             <tr key={d.name} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
               <td className="px-3 py-2 text-gray-400">{i + 1}</td>

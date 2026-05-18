@@ -19,13 +19,13 @@ export default function PrintedDispatchPage() {
             <option value="">All Projects</option>
             {(projects as any[]).map((p: any) => <option key={p.id} value={p.id}>{p.name}</option>)}
           </select>
-          <button onClick={() => window.print()} className="px-3 py-1.5 bg-slate-700 text-white rounded text-xs hover:bg-slate-800">Print Dispatch List</button>
+          <button onClick={() => window.print()} className="px-3 py-1.5 bg-purple-700 text-white rounded text-xs hover:bg-slate-800">Print Dispatch List</button>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Printed Document Dispatch ({rows.length} records)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Printed Document Dispatch ({rows.length} records)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document Type</th><th className="px-3 py-2">Print Date</th><th className="px-3 py-2">Dispatched By</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Action</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document Type</th><th className="px-3 py-2">Print Date</th><th className="px-3 py-2">Dispatched By</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Action</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={8} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 rows.length === 0 ? <tr><td colSpan={8} className="text-center py-6 text-gray-400 italic">No printed dispatch records</td></tr> :

@@ -109,10 +109,10 @@ export default function EditInstallmentPage() {
 
         {planId && (
           <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-            <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Installments</div>
+            <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Installments</div>
             <table className="w-full text-xs">
               <thead>
-                <tr className="bg-blue-900 text-white">
+                <tr className="bg-purple-700 text-white">
                   <th className="px-3 py-2">S.No.</th>
                   <th className="px-3 py-2">Name</th>
                   <th className="px-3 py-2">Due Type</th>

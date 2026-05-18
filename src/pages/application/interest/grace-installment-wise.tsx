@@ -32,10 +32,10 @@ export default function GraceInstallmentWisePage() {
           <div className="text-xs text-blue-600 font-medium">18% p.a. after grace period</div>
         </div>
         <div className="bg-white border rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-slate-700 px-3 py-2 text-white text-xs font-bold uppercase">Installment Wise Grace Period ({withGrace.length} overdue)</div>
+          <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Installment Wise Grace Period ({withGrace.length} overdue)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-blue-900 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Installment</th><th className="px-3 py-2">Principal (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Days Overdue</th><th className="px-3 py-2">Grace Days</th><th className="px-3 py-2">Effective Days</th><th className="px-3 py-2">Interest (₹)</th></tr></thead>
+              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Installment</th><th className="px-3 py-2">Principal (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Days Overdue</th><th className="px-3 py-2">Grace Days</th><th className="px-3 py-2">Effective Days</th><th className="px-3 py-2">Interest (₹)</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={9} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 withGrace.length === 0 ? <tr><td colSpan={9} className="text-center py-6 text-gray-400 italic">No overdue demands found</td></tr> :
