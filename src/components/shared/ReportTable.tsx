@@ -29,20 +29,20 @@ export default function ReportTable({ title, columns, data, filename, isLoading 
   return (
     <div style={{ width: '100%', border: '1px solid var(--border)', borderRadius: 10, overflow: 'hidden', background: 'var(--bg-card)', boxShadow: 'var(--shadow-sm)' }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', background: '#7C3AED' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: 11.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.07em', color: '#CBD5E1' }}>
+          <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: 11.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.07em', color: '#fff' }}>
             {title}
           </span>
           {data.length > 0 && (
-            <span style={{ background: 'rgba(249,115,22,0.15)', color: '#F97316', fontSize: 10.5, fontWeight: 700, padding: '2px 9px', borderRadius: 99, fontFamily: "'Outfit', sans-serif", border: '1px solid rgba(249,115,22,0.25)' }}>
+            <span style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', fontSize: 10.5, fontWeight: 700, padding: '2px 10px', borderRadius: 99, fontFamily: "'Outfit', sans-serif" }}>
               {data.length.toLocaleString()} records
             </span>
           )}
         </div>
-        <button onClick={handleExport} disabled={data.length === 0} style={btnStyle}
-          onMouseEnter={e => { if (data.length > 0) { (e.currentTarget.style.borderColor = '#F97316'); (e.currentTarget.style.color = '#F97316'); (e.currentTarget.style.background = 'rgba(249,115,22,0.08)'); } }}
-          onMouseLeave={e => { (e.currentTarget.style.borderColor = 'var(--border)'); (e.currentTarget.style.color = 'var(--text-muted)'); (e.currentTarget.style.background = 'transparent'); }}>
+        <button onClick={handleExport} disabled={data.length === 0} style={{ ...btnStyle, borderColor: 'rgba(255,255,255,0.4)', color: '#fff' }}
+          onMouseEnter={e => { if (data.length > 0) { (e.currentTarget.style.background = 'rgba(255,255,255,0.15)'); } }}
+          onMouseLeave={e => { (e.currentTarget.style.background = 'transparent'); }}>
           📥 Export CSV
         </button>
       </div>

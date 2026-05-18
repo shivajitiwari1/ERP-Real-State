@@ -286,7 +286,7 @@ const NAV: NavModule[] = [
       ]},
       { label: 'Collection', children: [
         { label: 'Project Wise Collection', href: '/reports/collection/project-wise' },
-        { label: 'Collection Report', href: '/reports/collection/index' },
+        { label: 'Collection Report', href: '/reports/collection' },
         { label: 'Customer Wise Collection', href: '/reports/collection/customer-wise' },
         { label: 'Charges Wise (Vertical)', href: '/reports/collection/charges-wise' },
         { label: 'Charges Wise (Horizontal)', href: '/reports/collection/tower-unit-type' },
@@ -296,7 +296,7 @@ const NAV: NavModule[] = [
         { label: 'Monthly Fund Expense Report', href: '/reports/collection/fund-expense' },
       ]},
       { label: 'Dues', children: [
-        { label: 'Due Report', href: '/reports/dues/index' },
+        { label: 'Due Report', href: '/reports/dues' },
         { label: 'Customer Wise Dues', href: '/reports/dues/customer-wise' },
         { label: 'Tower Wise Dues', href: '/reports/dues/tower-wise-stage' },
         { label: 'Plan Wise Dues', href: '/reports/dues/plan-wise-stage' },
