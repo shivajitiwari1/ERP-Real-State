@@ -42,7 +42,7 @@ export default function SetCustomerPenaltyPage() {
                   <td className="px-3 py-1.5">{b.Unit?.unitNumber || '-'}</td>
                   <td className="px-3 py-1.5 text-right text-green-600">{Number(b.agreementValue || b.totalAmount || 0).toLocaleString('en-IN')}</td>
                   <td className="px-3 py-1.5 text-right">
-                    <input type="number" value={penalties[b.id] || ''} onChange={e => setPenalties(p => ({...p, [b.id]: e.target.value}))} placeholder="0" className="border rounded px-1 h-7 text-xs w-24 text-right" />
+                    <input type="number" value={penalties[b.id] || ''} onChange={e => setPenalties(p => ({...p, [b.id]: e.target.value}))} placeholder="0" className="border rounded px-1 h-9 text-sm w-24 text-right" />
                   </td>
                   <td className="px-3 py-1.5 text-center">
                     <button className="bg-purple-700 text-white px-2 py-0.5 rounded text-xs hover:bg-purple-800">Save</button>

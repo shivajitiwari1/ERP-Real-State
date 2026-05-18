@@ -35,10 +35,10 @@ export default function NOCPaymentDetailsPage() {
                   <td className="px-3 py-1.5">{n.Booking?.Unit?.unitNumber || '-'}</td>
                   <td className="px-3 py-1.5">{n.requestDate?.split('T')[0] || '-'}</td>
                   <td className="px-3 py-1.5 text-right">
-                    <input type="number" value={payments[n.id]?.amount || ''} onChange={e => setPayments(p => ({...p, [n.id]: {...(p[n.id]||{}), amount: e.target.value}}))} placeholder="0" className="border rounded px-1 h-7 text-xs w-24 text-right" />
+                    <input type="number" value={payments[n.id]?.amount || ''} onChange={e => setPayments(p => ({...p, [n.id]: {...(p[n.id]||{}), amount: e.target.value}}))} placeholder="0" className="border rounded px-1 h-9 text-sm w-24 text-right" />
                   </td>
                   <td className="px-3 py-1.5">
-                    <select value={payments[n.id]?.mode || ''} onChange={e => setPayments(p => ({...p, [n.id]: {...(p[n.id]||{}), mode: e.target.value}}))} className="border rounded px-1 h-7 text-xs">
+                    <select value={payments[n.id]?.mode || ''} onChange={e => setPayments(p => ({...p, [n.id]: {...(p[n.id]||{}), mode: e.target.value}}))} className="border rounded px-1 h-9 text-sm">
                       <option value="">Select</option>
                       <option value="cash">Cash</option>
                       <option value="cheque">Cheque</option>

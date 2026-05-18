@@ -68,7 +68,7 @@ export default function AssignChallanPage() {
                             placeholder="Enter challan no."
                             value={challanInputs[r.id] || ''}
                             onChange={e => setChallanInputs(prev => ({ ...prev, [r.id]: e.target.value }))}
-                            className="border rounded px-2 h-7 text-xs w-28"
+                            className="border rounded px-2 h-9 text-sm w-28"
                           />
                           <button
                             onClick={() => axios.put('/api/application/receipts', { id: r.id, instrumentNo: challanInputs[r.id] })}

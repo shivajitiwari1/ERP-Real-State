@@ -47,7 +47,7 @@ function TF({ label, name, register, error, type = 'text', required = false }: a
       <Label className="text-xs text-gray-600 block mb-0.5">
         {required && <span className="text-red-500 mr-0.5">*</span>}{label}
       </Label>
-      <Input type={type} {...register(name)} className="h-7 text-xs rounded border-gray-300" />
+      <Input type={type} {...register(name)} className="h-9 text-sm rounded border-gray-300" />
       {error && <p className="text-red-500 text-[10px] mt-0.5">{error.message}</p>}
     </div>
   );
@@ -290,7 +290,7 @@ export default function CompanyPage() {
               <Button
                 type="button"
                 size="sm"
-                className="h-7 text-xs bg-blue-600 hover:bg-blue-700 rounded px-3"
+                className="h-9 text-sm bg-blue-600 hover:bg-blue-700 rounded px-3"
                 onClick={handleAttach}
                 disabled={!logoFile || logoUploading}
               >
@@ -307,13 +307,13 @@ export default function CompanyPage() {
 
           {/* Row 10: Buttons */}
           <div className="flex items-center gap-2 border-t pt-2">
-            <Button type="submit" size="sm" className="h-7 text-xs bg-orange-500 hover:bg-orange-600 rounded px-4" disabled={save.isPending}>
+            <Button type="submit" size="sm" className="h-9 text-sm bg-orange-500 hover:bg-orange-600 rounded px-4" disabled={save.isPending}>
               {save.isPending ? 'Saving...' : 'SAVE'}
             </Button>
-            <Button type="button" size="sm" variant="outline" className="h-7 text-xs rounded px-4 border-gray-400" onClick={handleView} disabled={!editingId && !companyName}>
+            <Button type="button" size="sm" variant="outline" className="h-9 text-sm rounded px-4 border-gray-400" onClick={handleView} disabled={!editingId && !companyName}>
               VIEW
             </Button>
-            <Button type="button" size="sm" variant="outline" className="h-7 text-xs rounded px-4 border-gray-400" onClick={() => { reset(); clearLogo(); }}>
+            <Button type="button" size="sm" variant="outline" className="h-9 text-sm rounded px-4 border-gray-400" onClick={() => { reset(); clearLogo(); }}>
               CLOSE
             </Button>
           </div>
@@ -365,7 +365,7 @@ export default function CompanyPage() {
           </table>
         </div>
         <div className="p-2 border-t">
-          <Button size="sm" variant="outline" className="h-7 text-xs rounded px-4" onClick={() => window.print()}>
+          <Button size="sm" variant="outline" className="h-9 text-sm rounded px-4" onClick={() => window.print()}>
             PRINT
           </Button>
         </div>
@@ -421,7 +421,7 @@ export default function CompanyPage() {
                 )}
                 <div className="pt-2 border-t text-right">
                   <Dialog.Close asChild>
-                    <Button size="sm" variant="outline" className="h-7 text-xs rounded px-4">CLOSE</Button>
+                    <Button size="sm" variant="outline" className="h-9 text-sm rounded px-4">CLOSE</Button>
                   </Dialog.Close>
                 </div>
               </div>

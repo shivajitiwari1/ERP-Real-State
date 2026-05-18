@@ -37,7 +37,7 @@ export default function AddressLabelsPage() {
           </div>
           <div className="flex gap-2">
             <button onClick={add} className="bg-purple-700 text-white px-4 h-8 rounded text-sm hover:bg-purple-800">Add Entry</button>
-            <input value={filter} onChange={e => setFilter(e.target.value)} placeholder="Filter by name or tag..." className="border rounded px-2 h-8 text-sm ml-auto min-w-48" />
+            <input value={filter} onChange={e => setFilter(e.target.value)} placeholder="Filter by name or tag..." className="border rounded px-2 h-9 text-sm ml-auto min-w-48" />
           </div>
         </div>
         <div className="bg-white rounded border shadow-sm overflow-hidden">

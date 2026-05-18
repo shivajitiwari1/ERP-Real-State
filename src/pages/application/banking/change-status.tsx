@@ -97,7 +97,7 @@ export default function ChangeChequeStatusPage() {
                       <td className="px-3 py-2">
                         {editId === c.id ? (
                           <div className="flex gap-1">
-                            <select className="border rounded px-1 h-7 text-xs" value={newStatus} onChange={e => setNewStatus(e.target.value)}>
+                            <select className="border rounded px-1 h-9 text-sm" value={newStatus} onChange={e => setNewStatus(e.target.value)}>
                               <option value="">Select</option>
                               {STATUS_OPTIONS.filter(s => s !== c.status).map(s => <option key={s} value={s} className="capitalize">{s}</option>)}
                             </select>
