@@ -1,9 +1,8 @@
 .next/
 node_modules/
 .env.local
-*.png
-*.jpg
-*.jpeg
-.playwright-mcp/
+# Allow logo but ignore user-uploaded images
+public/uploads/
+*.playwright-mcp/
 
 .vercel
