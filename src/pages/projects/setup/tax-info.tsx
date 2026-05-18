@@ -87,7 +87,7 @@ export default function TaxInfoPage() {
                       <span className={`mt-1 inline-block text-xs px-1.5 py-0.5 rounded text-white ${
                         t.category === 'Central' ? 'bg-blue-600' :
                         t.category === 'State' ? 'bg-green-600' :
-                        t.category === 'Legacy' ? 'bg-gray-500' : 'bg-slate-500'
+                        t.category === 'Legacy' ? 'bg-gray-500' : 'bg-purple-700'
                       }`}>{t.category}</span>
                     </div>
                     <span className={`ml-3 shrink-0 font-bold text-xs px-2 py-0.5 rounded ${
