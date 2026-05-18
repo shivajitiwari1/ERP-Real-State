@@ -20,8 +20,8 @@ const S = {
   right: { width: '100%', minWidth: 0, background: '#0B1628', display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', padding: '32px 24px', position: 'relative' as const, boxSizing: 'border-box' as const },
   field: { marginBottom: 18 },
   label: { display: 'block', fontSize: 15, fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.07em', color: '#94A3B8', marginBottom: 8, fontFamily: "'Outfit', sans-serif" },
-  input: { width: '100%', height: 48, padding: '0 14px 0 44px', background: 'rgba(255,255,255,0.05)', border: '1.5px solid rgba(255,255,255,0.12)', borderRadius: 10, color: '#F1F5F9', fontSize: 15, fontFamily: "'DM Sans', sans-serif", outline: 'none', transition: 'all 0.15s ease' },
-  inputIcon: { position: 'absolute' as const, left: 14, top: '50%', transform: 'translateY(-50%)', fontSize: 15, pointerEvents: 'none' as const },
+  input: { width: '100%', height: 48, padding: '0 44px 0 14px', background: 'rgba(255,255,255,0.05)', border: '1.5px solid rgba(255,255,255,0.12)', borderRadius: 10, color: '#F1F5F9', fontSize: 15, fontFamily: "'DM Sans', sans-serif", outline: 'none', transition: 'all 0.15s ease' },
+  inputIcon: { position: 'absolute' as const, right: 14, top: '50%', transform: 'translateY(-50%)', fontSize: 15, pointerEvents: 'none' as const },
   submit: { width: '100%', height: 50, background: 'linear-gradient(135deg, #F97316 0%, #EA6C0A 100%)', border: 'none', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, fontFamily: "'Outfit', sans-serif", letterSpacing: '0.05em', cursor: 'pointer', transition: 'all 0.15s ease', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, boxShadow: '0 4px 20px rgba(249,115,22,0.35)' },
 };
 
@@ -154,7 +154,6 @@ export default function LoginPage() {
           <div style={{ marginBottom: 22 }}>
             <label style={S.label}>Password</label>
             <div style={{ position: 'relative' }}>
-              <span style={{ ...S.inputIcon, color: '#64748B' }}>🔒</span>
               <input {...register('password')} type={showPass ? 'text' : 'password'} autoComplete="current-password"
                 style={{ ...S.input, paddingRight: 44 }} placeholder="Enter your password"
                 onFocus={e => { e.target.style.borderColor = '#F97316'; e.target.style.boxShadow = '0 0 0 3px rgba(249,115,22,0.12)'; e.target.style.background = 'rgba(249,115,22,0.04)'; }}
