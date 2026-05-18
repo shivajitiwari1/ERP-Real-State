@@ -18,7 +18,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         </div>
       </main>
       <footer style={{ background: 'var(--bg-navbar)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '9px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <SserpLogo iconSize={28} subTextColor="#94A3B8" />
+        <SserpLogo iconSize={28} textColor="#F1F5F9" subTextColor="#94A3B8" />
         <span style={{ fontSize: 11, color: '#94A3B8' }}>Real Estate ERP · v5.0</span>
       </footer>
     </div>
