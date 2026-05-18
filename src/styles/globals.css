@@ -280,10 +280,19 @@ table tfoot td {
 input, select, textarea {
   background: var(--bg-secondary) !important;
   color: var(--text) !important;
-  border-color: var(--border) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
   transition: background 0.3s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
   font-family: 'DM Sans', sans-serif !important;
   font-size: 13px !important;
+  height: 36px;
+  width: 100%;
+}
+textarea {
+  height: auto !important;
+  min-height: 80px;
+  resize: vertical;
 }
 input:focus, select:focus, textarea:focus {
   border-color: var(--accent) !important;
