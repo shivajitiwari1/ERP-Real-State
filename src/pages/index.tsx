@@ -31,7 +31,7 @@ export default function Dashboard() {
           <div className="bg-white rounded border shadow-sm overflow-hidden">
             <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Demand Status</div>
             <table className="w-full text-xs border-collapse">
-              <thead><tr className="bg-slate-800 text-white"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Pending</th><th className="px-2 py-1.5 text-right">Sent</th></tr></thead>
+              <thead><tr className="bg-slate-100"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Pending</th><th className="px-2 py-1.5 text-right">Sent</th></tr></thead>
               <tbody>{(dashData as any[]).map((d: any, i) => (
                 <tr key={i} className={i%2===0?'bg-white':'bg-gray-50'}>
                   <td className="px-2 py-1.5 font-medium">{d.project.name}</td>
@@ -45,7 +45,7 @@ export default function Dashboard() {
             <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Daily Status</div>
             <div className="overflow-auto">
               <table className="w-full text-xs border-collapse">
-                <thead><tr className="bg-slate-800 text-white"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Sales (T)</th><th className="px-2 py-1.5 text-right">Coll. (T)</th><th className="px-2 py-1.5 text-right">Coll. (M)</th><th className="px-2 py-1.5 text-right">Till Date</th></tr></thead>
+                <thead><tr className="bg-slate-100"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Sales (T)</th><th className="px-2 py-1.5 text-right">Coll. (T)</th><th className="px-2 py-1.5 text-right">Coll. (M)</th><th className="px-2 py-1.5 text-right">Till Date</th></tr></thead>
                 <tbody>{(dashData as any[]).map((d: any, i) => (
                   <tr key={i} className={i%2===0?'bg-white':'bg-gray-50'}>
                     <td className="px-2 py-1.5 font-medium">{d.project.name}</td>
@@ -61,7 +61,7 @@ export default function Dashboard() {
           <div className="bg-white rounded border shadow-sm overflow-hidden">
             <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Inventory Summary</div>
             <table className="w-full text-xs border-collapse">
-              <thead><tr className="bg-slate-800 text-white"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Total</th><th className="px-2 py-1.5 text-right">Available</th><th className="px-2 py-1.5 text-right">Booked</th><th className="px-2 py-1.5 text-right">Sold</th></tr></thead>
+              <thead><tr className="bg-slate-100"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Total</th><th className="px-2 py-1.5 text-right">Available</th><th className="px-2 py-1.5 text-right">Booked</th><th className="px-2 py-1.5 text-right">Sold</th></tr></thead>
               <tbody>{(dashData as any[]).map((d: any, i) => (
                 <tr key={i} className={i%2===0?'bg-white':'bg-gray-50'}>
                   <td className="px-2 py-1.5 font-medium">{d.project.name}</td>
@@ -77,7 +77,7 @@ export default function Dashboard() {
             <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Forthcoming Due (Next 28 Days)</div>
             <div className="overflow-auto">
               <table className="w-full text-xs border-collapse">
-                <thead><tr className="bg-slate-800 text-white"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Today</th><th className="px-2 py-1.5 text-right">1-7 Days</th><th className="px-2 py-1.5 text-right">8-14 Days</th><th className="px-2 py-1.5 text-right">15-21 Days</th><th className="px-2 py-1.5 text-right">22-28 Days</th></tr></thead>
+                <thead><tr className="bg-slate-100"><th className="px-2 py-1.5 text-left">Project</th><th className="px-2 py-1.5 text-right">Today</th><th className="px-2 py-1.5 text-right">1-7 Days</th><th className="px-2 py-1.5 text-right">8-14 Days</th><th className="px-2 py-1.5 text-right">15-21 Days</th><th className="px-2 py-1.5 text-right">22-28 Days</th></tr></thead>
                 <tbody>{(dashData as any[]).map((d: any, i) => (
                   <tr key={i} className={i%2===0?'bg-white':'bg-gray-50'}>
                     <td className="px-2 py-1.5 font-medium">{d.project.name}</td>

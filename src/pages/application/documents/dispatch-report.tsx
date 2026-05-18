@@ -37,7 +37,7 @@ export default function DispatchReportPage() {
           <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Dispatch Report ({rows.length} entries)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document</th><th className="px-3 py-2">Dispatch Date</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Delivery Status</th></tr></thead>
+              <thead><tr className="bg-slate-100"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Document</th><th className="px-3 py-2">Dispatch Date</th><th className="px-3 py-2">Courier No.</th><th className="px-3 py-2">Delivery Status</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={7} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 rows.length === 0 ? <tr><td colSpan={7} className="text-center py-6 text-gray-400 italic">No dispatch records</td></tr> :

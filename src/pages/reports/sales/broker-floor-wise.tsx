@@ -23,7 +23,7 @@ export default function BrokerFloorWisePage() {
         <div className="bg-white rounded border shadow-sm overflow-hidden">
           <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Broker Floor Wise Detail ({brokerBookings.length})</div>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-800 text-white">
+            <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">S.No.</th>
               <th className="px-3 py-2 text-left">Broker</th>
               <th className="px-3 py-2 text-left">Tower</th>

@@ -25,7 +25,7 @@ export default function EmailConfigTestPage() {
           error ? <div className="p-8 text-center text-red-500 text-sm">Could not load email config. API may not be configured.</div> :
           !config ? <div className="p-8 text-center text-gray-400 text-sm">No configuration found</div> :
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-800 text-white">
+            <thead><tr className="bg-slate-100">
               <th className="px-3 py-2 text-left">Parameter</th>
               <th className="px-3 py-2 text-left">Value</th>
               <th className="px-3 py-2 text-left">Status</th>

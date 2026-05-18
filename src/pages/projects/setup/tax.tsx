@@ -46,7 +46,7 @@ export default function TaxMasterPage() {
         <div className="bg-white p-4 rounded border shadow-sm">
           <h3 className="text-xs font-bold text-slate-600 mb-3 pb-1 border-b uppercase">State-wise Stamp Duty</h3>
           <table className="w-full text-xs border-collapse">
-            <thead><tr className="bg-slate-800 text-white"><th className="px-2 py-2 text-left">State</th><th className="px-2 py-2">Stamp Duty</th><th className="px-2 py-2">Reg. Fee</th></tr></thead>
+            <thead><tr className="bg-slate-100"><th className="px-2 py-2 text-left">State</th><th className="px-2 py-2">Stamp Duty</th><th className="px-2 py-2">Reg. Fee</th></tr></thead>
             <tbody>{[['Uttar Pradesh','5%','1%'],['Maharashtra','5%','1%'],['Delhi','4-6%','1%'],['Haryana','5-7%','1%'],['Karnataka','5%','1%'],['Gujarat','4.9%','1%'],['Rajasthan','4-6%','1%'],].map(([s,d,r],i)=>(
               <tr key={s} className={i%2===0?'bg-white':'bg-gray-50'}>
                 <td className="px-2 py-2">{s}</td>

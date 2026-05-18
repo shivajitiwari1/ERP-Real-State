@@ -30,7 +30,7 @@ export default function AreaConversionPage() {
           </select>
         </div>
         <table className="w-full text-sm border-collapse">
-          <thead><tr className="bg-slate-800 text-white"><th className="p-2 text-left">Unit</th><th className="p-2 text-right">Converted Value</th></tr></thead>
+          <thead><tr className="bg-slate-100"><th className="p-2 text-left">Unit</th><th className="p-2 text-right">Converted Value</th></tr></thead>
           <tbody>{UNITS.map((u, i) => (
             <tr key={u.key} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
               <td className="p-2">{u.label}</td>

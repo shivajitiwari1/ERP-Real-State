@@ -30,7 +30,7 @@ export default function AddressLabelsPage() {
             <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Address Labels ({(bookings as any[]).length} customers)</div>
             <div className="overflow-auto">
               <table className="w-full text-xs">
-                <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Address</th><th className="px-3 py-2">City</th><th className="px-3 py-2">Pin</th><th className="px-3 py-2">Action</th></tr></thead>
+                <thead><tr className="bg-slate-100"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer Name</th><th className="px-3 py-2">Address</th><th className="px-3 py-2">City</th><th className="px-3 py-2">Pin</th><th className="px-3 py-2">Action</th></tr></thead>
                 <tbody>
                   {isLoading ? <tr><td colSpan={7} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                   (bookings as any[]).length === 0 ? <tr><td colSpan={7} className="text-center py-6 text-gray-400 italic">No bookings found</td></tr> :

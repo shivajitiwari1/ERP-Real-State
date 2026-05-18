@@ -30,7 +30,7 @@ export default function InterestCustomerInstallmentWisePage() {
           <div className="bg-purple-700 px-3 py-2 text-white text-xs font-bold uppercase">Customer Installment Wise Interest ({withInterest.length} overdue)</div>
           <div className="overflow-auto">
             <table className="w-full text-xs">
-              <thead><tr className="bg-slate-800 text-white"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer</th><th className="px-3 py-2">Installment</th><th className="px-3 py-2">Principal (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Days Overdue</th><th className="px-3 py-2">Interest (₹)</th></tr></thead>
+              <thead><tr className="bg-slate-100"><th className="px-3 py-2">S.No.</th><th className="px-3 py-2">Reg. No.</th><th className="px-3 py-2">Customer</th><th className="px-3 py-2">Installment</th><th className="px-3 py-2">Principal (₹)</th><th className="px-3 py-2">Due Date</th><th className="px-3 py-2">Days Overdue</th><th className="px-3 py-2">Interest (₹)</th></tr></thead>
               <tbody>
                 {isLoading ? <tr><td colSpan={8} className="text-center py-6 text-gray-400">Loading...</td></tr> :
                 withInterest.length === 0 ? <tr><td colSpan={8} className="text-center py-6 text-gray-400 italic">No overdue demands found</td></tr> :
