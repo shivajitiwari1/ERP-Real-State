@@ -1,10 +1,53 @@
+import { useState, useEffect } from 'react';
 import PageHeader from '@/components/shared/PageHeader';
 
-export default function Page() {
+const STORAGE_KEY = 'email_head_master';
+
+export default function EmailHeadMasterPage() {
+  const [heads, setHeads] = useState<string[]>([]);
+  const [newHead, setNewHead] = useState('');
+
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) setHeads(JSON.parse(stored));
+    else setHeads(['Booking Confirmation', 'Payment Reminder', 'NOC Notification', 'Welcome Email', 'General']);
+  }, []);
+
+  const save = (updated: string[]) => { setHeads(updated); localStorage.setItem(STORAGE_KEY, JSON.stringify(updated)); };
+  const add = () => { if (newHead.trim()) { save([...heads, newHead.trim()]); setNewHead(''); } };
+  const remove = (i: number) => save(heads.filter((_, idx) => idx !== i));
+
   return (
     <div>
       <PageHeader title="Email Head Master" />
-      <div className="bg-white border rounded p-8 text-center text-gray-400 text-sm">Under Development</div>
+      <div className="space-y-4">
+        <div className="bg-white border rounded-lg shadow-sm p-3 flex gap-2">
+          <input value={newHead} onChange={e => setNewHead(e.target.value)} onKeyDown={e => e.key === 'Enter' && add()} placeholder="New email head category..." className="border rounded px-2 h-9 text-sm flex-1" />
+          <button onClick={add} className="bg-purple-700 text-white px-4 h-9 rounded text-sm hover:bg-purple-800">Add</button>
+        </div>
+        <div className="bg-white rounded border shadow-sm overflow-hidden">
+          <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Email Head Categories ({heads.length})</div>
+          <table className="w-full text-xs border-collapse">
+            <thead><tr className="bg-gray-100">
+              <th className="px-3 py-2 text-left">S.No.</th>
+              <th className="px-3 py-2 text-left">Category Name</th>
+              <th className="px-3 py-2 text-center">Action</th>
+            </tr></thead>
+            <tbody>
+              {heads.length === 0 ? <tr><td colSpan={3} className="text-center py-6 text-gray-400">No categories added</td></tr> :
+              heads.map((h, i) => (
+                <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <td className="px-3 py-1.5 text-gray-500">{i + 1}</td>
+                  <td className="px-3 py-1.5 font-medium">{h}</td>
+                  <td className="px-3 py-1.5 text-center">
+                    <button onClick={() => remove(i)} className="text-red-500 hover:text-red-700 text-xs px-2 py-0.5 rounded hover:bg-red-50">Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
