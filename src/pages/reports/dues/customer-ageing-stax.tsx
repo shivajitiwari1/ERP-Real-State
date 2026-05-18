@@ -39,7 +39,7 @@ export default function CustomerAgeingStaxPage() {
             <option value="">All Projects</option>
             {(projects as any[]).map((p: any) => <option key={p.id} value={p.id}>{p.name}</option>)}
           </select>
-          <span className="text-xs text-gray-500 bg-yellow-50 border border-yellow-200 rounded px-2 py-1">GST Rate: 18%</span>
+          <span className="text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded-md px-3 py-1.5">GST Rate: 18%</span>
         </div>
         <div className="bg-white rounded border shadow-sm overflow-hidden">
           <div className="bg-purple-700 text-white text-xs font-bold px-3 py-2 uppercase">Customer Wise Ageing With STax ({rows.length})</div>

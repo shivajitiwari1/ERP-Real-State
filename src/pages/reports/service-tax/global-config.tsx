@@ -36,7 +36,7 @@ export default function GlobalConfigPage() {
             </tbody>
           </table>
         </div>
-        <div className="bg-yellow-50 border border-yellow-200 rounded p-3 text-xs text-yellow-800">
+        <div className="bg-blue-50 border border-blue-200 rounded-md p-3 text-xs text-yellow-800">
           These are system-wide GST configuration values. Contact your tax consultant before modifying tax rates.
         </div>
       </div>
